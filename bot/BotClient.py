@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# TODO: DELETE THIS FILE
+
 
 import praw
 from bot.prawoauth2 import PrawOAuth2Mini
