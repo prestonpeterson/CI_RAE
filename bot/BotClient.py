@@ -6,7 +6,7 @@ import praw
 from bot.prawoauth2 import PrawOAuth2Mini
 import time
 from bot.tokens import app_key, app_secret, access_token, refresh_token
-from bot.settings import scopes, user_agent
+from bot.settings import scopes, user_agent, subreddits
 
 reddit_client = praw.Reddit(user_agent=user_agent)
 oauth_helper = PrawOAuth2Mini(reddit_client, app_key=app_key,
@@ -22,7 +22,7 @@ def parse_and_resolve_requests(comment_id, requests):
 
 def run_bot():
     oauth_helper.refresh()
-    for comment in reddit_client.get_comments('test'):
+    for comment in reddit_client.get_comments(subreddits):
         if comment.body.lower().startswith('ci_rae '):
             print('Found request')
             parse_and_resolve_requests(comment, comment.body.lower())
