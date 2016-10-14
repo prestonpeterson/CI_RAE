@@ -3,11 +3,14 @@
 
 
 import praw
+import sys
 from bot.prawoauth2 import PrawOAuth2Mini
 import time
 from bot.tokens import app_key, app_secret, access_token, refresh_token
 from bot.settings import scopes, user_agent, subreddits
 from analytics import request_handler
+
+response_queue = []
 
 reddit_client = praw.Reddit(user_agent=user_agent)
 oauth_helper = PrawOAuth2Mini(reddit_client, app_key=app_key,
@@ -19,12 +22,19 @@ oauth_helper = PrawOAuth2Mini(reddit_client, app_key=app_key,
 def run_bot():
     oauth_helper.refresh()
     for comment in reddit_client.get_comments(subreddits):
-        if comment.body.lower().startswith('ci_rae '):
+        if any(str(reply.author) == 'ci_rae' for reply in comment.replies):
+            print('bot already replied')
+        if comment.body.lower().startswith('ci_rae ') \
+                and not any(str(reply.author) == 'ci_rae' for reply in comment.replies):
             print('Found request')
             try:
                 request_handler.RequestThread(comment).start()
             except:
-                print("Error: unable to start thread")
+                print("Error: ", sys.exc_info()[0], ". Unable to start thread")
+                time.sleep(1)
+        if response_queue:
+            response = response_queue.pop()
+            response[0].reply(response[1])
 
 while True:
     try:
