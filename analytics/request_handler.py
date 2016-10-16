@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from bot.bot_client import response_queue
+
 import threading
 
 class RequestThread(threading.Thread):
