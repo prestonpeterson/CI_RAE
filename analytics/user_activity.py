@@ -3,6 +3,7 @@ from datetime import datetime
 import numpy as np
 import math
 
+
 class CIRaeUserActivity:
     def __init__(self, r_user, time_zone='pst'):
         self.reddit_user = r_user
@@ -44,7 +45,7 @@ class CIRaeUserActivity:
         ax.bar(keys, values, bar_width, align='center')
 
         ax.set_title("Active Redditor Times: " + self.reddit_user.name)
-        ax.set_xlabel("Time")
+        ax.set_xlabel("Time (PST)")
         ax.set_ylabel("Percentage of comments posted", rotation='vertical')
         ax.set_xlim([0,23])
         ax.axis('tight')

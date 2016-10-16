@@ -1,6 +1,5 @@
 import time
 import praw
-# from karma_breakdown import CIKarmaBreakdown
 from user_activity import CIRaeUserActivity
 
 
