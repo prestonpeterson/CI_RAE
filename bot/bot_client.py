@@ -1,30 +1,67 @@
 #!/usr/bin/env python
-# TODO: DELETE THIS FILE
-
 
 import praw
 from bot.prawoauth2 import PrawOAuth2Mini
 import time
 from bot.tokens import app_key, app_secret, access_token, refresh_token
-from bot.settings import scopes, user_agent, subreddits
+from bot.settings import scopes, user_agent, subreddits, SLEEP_TIME, user_name, user_pass
 from analytics import request_handler
+
+cache = set() # comment ids can/should be removed from this set once they have been replied to
+sub_wait = {}
 
 reddit_client = praw.Reddit(user_agent=user_agent)
 oauth_helper = PrawOAuth2Mini(reddit_client, app_key=app_key,
                               app_secret=app_secret, access_token=access_token,
                               scopes=scopes, refresh_token=refresh_token)
+reddit_client.login(user_name, user_pass, disable_warning=True)
+
+
+def check_sub_wait(subreddit, subs):
+    s = subreddit.display_name
+    if s in subs:
+        now = time.time()
+        wait_time = subs[s]
+        print('%i < %i?' % (now, wait_time))
+        if now >= wait_time:
+            del subs[s]
+        else:
+            return True
+    return False
 
 
 
 def run_bot():
     oauth_helper.refresh()
-    for comment in reddit_client.get_comments(subreddits):
-        if comment.body.lower().startswith('ci_rae '):
-            print('Found request')
-            try:
-                request_handler.RequestThread(comment).start()
-            except:
-                print("Error: unable to start thread")
+    mentions = reddit_client.get_mentions()
+
+    # Check new mentions
+    for m in mentions:
+        if m.id in cache:
+            continue
+        if m.subject != 'username mention':
+            m.mark_as_read()
+            continue
+
+        if check_sub_wait(m.subreddit, sub_wait):
+            continue
+
+        current_sub = m.subreddit
+
+        for reply in m.replies:
+            if reply.author.name == 'ci_rae':
+                cache.add(m.id)
+
+        # Process the message
+        if m.id not in cache:
+            # Call Phillip's Request Handler class to process the user's request(s)
+            print("Found request")
+            m.reply("yao yao")
+            m.mark_as_read()
+
+        cache.add(m.id)
+
+    time.sleep(SLEEP_TIME)
 
 while True:
     try:
@@ -39,6 +76,8 @@ while True:
         print(rle.error_type, rle.message)
         print("Sleeping for ", rle.sleep_time, " seconds")
         time.sleep(rle.sleep_time)
+    except Exception as e:
+        print('Error: ', e)
 
 
 
