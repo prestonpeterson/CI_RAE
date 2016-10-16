@@ -1,7 +1,7 @@
 import time
 import praw
 # from karma_breakdown import CIKarmaBreakdown
-from user_activity import CIUserActivity
+from user_activity import CIRaeUserActivity
 
 
 class DebugClient:
@@ -28,7 +28,7 @@ class DebugClient:
                         # command = comment_body_list[1]
                         user_name = comment.author
 
-                        wc = CIUserActivity(user_name)
+                        wc = CIRaeUserActivity(user_name,'pst')
                         wc.user_activity()
 
                         #comment.reply("ci_rae")
