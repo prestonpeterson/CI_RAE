@@ -28,7 +28,7 @@ class DebugClient:
                         # command = comment_body_list[1]
                         user_name = comment.author
 
-                        wc = CIRaeUserActivity(user_name,'pst')
+                        wc = CIRaeUserActivity(user_name)
                         wc.user_activity()
 
                         #comment.reply("ci_rae")

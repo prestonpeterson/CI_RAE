@@ -1,11 +1,10 @@
-import praw
 import matplotlib.pyplot as plt
 from datetime import datetime
 import numpy as np
 import math
 
 class CIRaeUserActivity:
-    def __init__(self, r_user, time_zone):
+    def __init__(self, r_user, time_zone='pst'):
         self.reddit_user = r_user
         #set to grab a certain number of things from reddit...reddit wont return more than 1000
         self.thing_limit = 100
@@ -25,6 +24,7 @@ class CIRaeUserActivity:
                           18: 0, 19: 0, 20: 0, 21: 0, 22: 0, 23: 0 }
 
         for r_comment in generated:
+            # Apparently its UTC, but for some reason the format is in PST???
             print(datetime.fromtimestamp(r_comment.created_utc))
             dt = datetime.fromtimestamp(r_comment.created_utc).timetuple()
             hour_posted = dt[self.datetime_ndx['hour']]
@@ -35,21 +35,21 @@ class CIRaeUserActivity:
         # Convert values to decimal percentage notation
         values = values / np.sum(values)
 
-        # Generate the number of ticks we would need.
+        # Generate the number of y-ticks the graph would need.
         # Ex. if the largest value only goes up to .23, max_y_tick would be 5 + 1 [0% 5% 10% 15% 20% 25%]
         max_y_tick = math.ceil(np.amax(values) * 20) + 1
 
-        width = 1
+        bar_width = 1
         fig, ax = plt.subplots()
-        ax.bar(keys, values, width, align='center')
+        ax.bar(keys, values, bar_width, align='center')
 
         ax.set_title("Active Redditor Times: " + self.reddit_user.name)
-        ax.set_xlabel("Time (UTC)")
+        ax.set_xlabel("Time")
         ax.set_ylabel("Percentage of comments posted", rotation='vertical')
         ax.set_xlim([0,23])
         ax.axis('tight')
 
-        ax.set_xticks(keys + width)
+        ax.set_xticks(keys + bar_width)
         ax.set_yticks([x * .05 for x in range(max_y_tick)])
 
         ax.set_xticklabels(keys, rotation='vertical')
