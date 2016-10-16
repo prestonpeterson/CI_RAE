@@ -14,7 +14,7 @@ class DebugClient:
 
     def run(self):
         while True:
-            subreddit = self.r.get_subreddit('test')
+            subreddit = self.r.get_subreddit('giant')
             for submission in subreddit.get_hot(limit=10):
                 #flatten the comment tree forest to a list
                 flat_comments = praw.helpers.flatten_tree(submission.comments)
