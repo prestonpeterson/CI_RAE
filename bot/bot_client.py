@@ -8,13 +8,15 @@ from bot.settings import scopes, user_agent, subreddits, SLEEP_TIME, user_name, 
 from analytics import request_handler
 
 cache = set() # comment ids can/should be removed from this set once they have been replied to
-sub_wait = {}
+sub_wait = {} # rate limit wait times for subreddits
+current_sub = ''
 
 reddit_client = praw.Reddit(user_agent=user_agent)
 oauth_helper = PrawOAuth2Mini(reddit_client, app_key=app_key,
                               app_secret=app_secret, access_token=access_token,
                               scopes=scopes, refresh_token=refresh_token)
 reddit_client.login(user_name, user_pass, disable_warning=True)
+
 
 
 def check_sub_wait(subreddit, subs):
@@ -29,6 +31,10 @@ def check_sub_wait(subreddit, subs):
             return True
     return False
 
+def add_sub_wait(sleep_time, subreddit, subs):
+    now = time.time()
+    s = subreddit.display_name
+    subs[s] = now+sleep_time
 
 
 def run_bot():
@@ -37,6 +43,8 @@ def run_bot():
 
     # Check new mentions
     for m in mentions:
+        current_sub = m.subreddit
+
         if m.id in cache:
             continue
         if m.subject != 'username mention':
@@ -46,7 +54,7 @@ def run_bot():
         if check_sub_wait(m.subreddit, sub_wait):
             continue
 
-        current_sub = m.subreddit
+
 
         for reply in m.replies:
             if reply.author.name == 'ci_rae':
@@ -75,6 +83,7 @@ while True:
         # If bot tries to comment too frequently, this exception will be caught
         print(rle.error_type, rle.message)
         print("Sleeping for ", rle.sleep_time, " seconds")
+        add_sub_wait(rle.sleep_time.sleep_time, current_sub, sub_wait)
         time.sleep(rle.sleep_time)
     except Exception as e:
         print('Error: ', e)
