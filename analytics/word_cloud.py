@@ -14,9 +14,11 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 from nltk.corpus import stopwords
 
+
 class CIWordCloud:
     def __init__(self,user_name):
         self.user_name = user_name
+
     def word_cloud(self):
         #stopwords from wordcloud
         s = set(STOPWORDS)

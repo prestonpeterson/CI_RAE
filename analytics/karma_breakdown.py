@@ -4,6 +4,7 @@ import numpy as np
 import operator
 from operator import itemgetter
 
+
 class CIKarmaBreakdown:
     def __init__(self,user_name):
         self.user_name = user_name
