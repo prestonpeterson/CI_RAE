@@ -1,28 +1,15 @@
-#to install wordcloud use command:
-# pip3 install wordcloud
-#to install natural language tool kit use command:
-# pip3 install nltk
-#then you need to download the corpus, fire up a python terminal
-#>>> import nltk
-#>>> nltk.download()
-
-from PIL import Image
-from os import path
 import praw
-import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
-from nltk.corpus import stopwords
-
 
 class CIWordCloud:
     def __init__(self,user_name):
         self.user_name = user_name
-
     def word_cloud(self):
+
         #stopwords from wordcloud
         s = set(STOPWORDS)
-
+        s.add("one")
         # Per the reddit API, user agent should follow format: <platform>:<app ID>:<version string> (by /u/<reddit username>)
         user_agent = ("Ubuntu 16.04:CI-RAE:V0.1 (by /u/giantmatt)")
 
@@ -40,12 +27,11 @@ class CIWordCloud:
         for thing in generated:
             total_comments += thing.body
             total_comments += " "
-        #filter out common stopwords using the nltk stopwords corpus
-        filtered_comments = ' '.join([word for word in total_comments.split() if word not in (stopwords.words('english'))])
 
         # take relative word frequencies into account, lower max_font_size
-        wordcloud = WordCloud(max_font_size=100, relative_scaling=.1, stopwords=s).generate(filtered_comments)
+        wordcloud = WordCloud(scale=3, relative_scaling=.5, random_state=1, stopwords=s).generate(total_comments)
         plt.figure()
+        plt.title(self.user_name + "'s image cloud")
         plt.imshow(wordcloud)
         plt.axis("off")
         plt.show()
