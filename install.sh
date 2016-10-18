@@ -7,6 +7,7 @@ sudo pip3 install -U nltk
 sudo pip3 install -U numpy
 sudo pip3 install -U matplotlib
 sudo pip3 install -U wordcloud
+sudo pip3 install -U tornado
 python3 <<END
 import nltk
 nltk.download()

@@ -1,8 +1,8 @@
 import time
+
 import praw
-from karma_breakdown import CIKarmaBreakdown
-from user_activity import CIUserActivity
-from word_cloud import CIWordCloud
+
+from analytics.word_cloud import CIWordCloud
 
 r = praw.Reddit('Ubuntu 16.04:CI-RAE:V0.1 (by /u/giantmatt)')
 r.login(username='ci_rae', password='herpderp')
