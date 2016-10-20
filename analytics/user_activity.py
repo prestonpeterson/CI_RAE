@@ -7,18 +7,18 @@ import math
 class CIRaeUserActivity:
     def __init__(self, r_user, time_zone='pst'):
         self.reddit_user = r_user
-        #set to grab a certain number of things from reddit...reddit wont return more than 1000
+        # set to grab a certain number of things from reddit...reddit wont return more than 1000
         self.thing_limit = 100
-        #Dictionary that contains the indexes to access information in the datetime.tuple()
+        # Dictionary that contains the indexes to access information in the datetime.tuple()
         self.datetime_ndx = {'year': 0, 'month': 1, 'day': 2, 'hour': 3,
                               'min': 4, 'sec': 5, 'wday': 6, 'yday': 7}
 
-        self.time_zone = time_zone #TODO: Implement timezone
+        self.time_zone = time_zone # TODO: Implement timezone
 
     def user_activity(self):
         generated = self.reddit_user.get_comments(limit=self.thing_limit)
 
-        #The hour that the user has commented
+        # The hour that the user has commented
         comment_times = { 0: 0,  1: 0,  2: 0, 3: 0, 4: 0, 5: 0,
                           6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0,
                           12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0,
@@ -55,6 +55,7 @@ class CIRaeUserActivity:
 
         ax.set_xticklabels(keys, rotation='vertical')
         ax.set_yticklabels(['{:3.0f}%'.format(x * 5) for x in range(max_y_tick)])
-        #saves a png of the generated report
-        # plt.savefig(user_name+'_karma_breakdown.png')
-        plt.show()
+        # Saves a png of the generated report
+        file_name = self.reddit_user.name +'_user_activity.png'
+        plt.savefig(file_name)
+        return file_name;
