@@ -64,7 +64,6 @@ def word_count(reddit_user, save_path=''):
     ax.set_xticks(sorted_range)
     ax.set_yticks(range(max_y_tick))
 
-
     ax.set_xticklabels(sorted_keys, rotation='vertical')
 
     #saves a png of the generated report

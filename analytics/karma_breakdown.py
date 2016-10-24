@@ -1,4 +1,3 @@
-import praw
 import matplotlib.pyplot as plt
 import numpy as np
 import operator
@@ -6,7 +5,7 @@ from operator import itemgetter
 
 
 def karma_breakdown(reddit_user, save_path=''):
-    #set to grab a certain number of things from reddit...reddit wont return more than 1000
+    # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100
 
     generated = reddit_user.get_submitted(limit=thing_limit)
