@@ -1,6 +1,7 @@
 import time
 import praw
-from user_activity import CIRaeUserActivity
+from user_activity import user_activity
+from word_count import word_count
 
 
 class DebugClient:
@@ -13,7 +14,7 @@ class DebugClient:
 
     def run(self):
         while True:
-            subreddit = self.r.get_subreddit('giant')
+            subreddit = self.r.get_subreddit('test')
             for submission in subreddit.get_hot(limit=10):
                 #flatten the comment tree forest to a list
                 flat_comments = praw.helpers.flatten_tree(submission.comments)
@@ -27,8 +28,8 @@ class DebugClient:
                         # command = comment_body_list[1]
                         user_name = comment.author
 
-                        wc = CIRaeUserActivity(user_name)
-                        wc.user_activity()
+                        # user_activity(user_name)
+                        word_count(user_name)
 
                         #comment.reply("ci_rae")
                         self.already_done.append(comment.id)
