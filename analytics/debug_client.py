@@ -1,7 +1,8 @@
 import time
 import praw
-from user_activity import user_activity
+from karma_breakdown import karma_breakdown
 from word_count import word_count
+from user_activity import user_activity
 
 
 class DebugClient:
@@ -28,7 +29,8 @@ class DebugClient:
                         # command = comment_body_list[1]
                         user_name = comment.author
 
-                        # user_activity(user_name)
+                        user_activity(user_name)
+                        karma_breakdown(user_name)
                         word_count(user_name)
 
                         #comment.reply("ci_rae")

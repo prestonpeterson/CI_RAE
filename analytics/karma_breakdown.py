@@ -31,14 +31,28 @@ def karma_breakdown(reddit_user, save_path=''):
     sorted_values = list(map(itemgetter(1), sorted_x))
     del sorted_values[20:]
 
+    max_y_tick = np.amax(sorted_values) + 1
+    bar_width = 1
+    sorted_range = np.array(range(len(sorted_keys)))
 
-    fig = plt.figure()
-    plt.bar(range(len(sorted_values)), sorted_values, align='center')
-    plt.title("Karma Breakdown of top 20 subreddits from User: " + reddit_user.name)
-    plt.xlabel("Subreddit Name")
-    plt.ylabel("Karma", rotation='vertical')
-    plt.xticks(range(len(sorted_keys)), sorted_keys, rotation='vertical')
-    plt.tight_layout()
+    fig, ax = plt.subplots()
+    ax.bar(sorted_range, sorted_values, bar_width, align='center')
+
+    ax.set_title("Karma Breakdown of top 20 subreddits from User: " + reddit_user.name)
+
+    ax.set_xlabel("Subreddit Name")
+    ax.set_ylabel("Karma", rotation='vertical')
+
+    ax.set_xlim([0, len(sorted_range)])
+    ax.set_ylim([0, max_y_tick])
+
+    fig.tight_layout() # This is apparently supposed to give room to the x labels
+    ax.axis('tight')
+
+    ax.set_xticks(sorted_range)
+    ax.set_yticks(range(max_y_tick))
+
+    ax.set_xticklabels(sorted_keys, rotation='vertical')
 
     # Saves a png of the generated report
     file_name = save_path + reddit_user.name + '_karma_breakdown.png'

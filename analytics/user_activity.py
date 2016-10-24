@@ -34,9 +34,10 @@ def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
     # Ex. if the largest value only goes up to .23, max_y_tick would be 5 + 1 [0% 5% 10% 15% 20% 25%]
     max_y_tick = math.ceil(np.amax(values) * 20) + 1
 
+    sorted_range = np.array(range(len(keys)))
     bar_width = 1
     fig, ax = plt.subplots()
-    ax.bar(range(len(values)), values, bar_width, align='center')
+    ax.bar(sorted_range, values, bar_width, align='center')
 
     ax.set_title("Active Redditor Times: " + reddit_user.name)
 
@@ -44,13 +45,15 @@ def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
     ax.set_ylabel("Percentage of comments posted", rotation='vertical')
 
     ax.set_xlim([0, 23])
-    ax.axis('tight')
 
-    ax.set_xticks(keys + bar_width)
+    ax.set_xticks(sorted_range)
     ax.set_yticks([x * .05 for x in range(max_y_tick)])
 
     ax.set_xticklabels(keys, rotation='vertical')
     ax.set_yticklabels(['{:3.0f}%'.format(x * 5) for x in range(max_y_tick)])
+
+    fig.tight_layout() # This is apparently supposed to give room to the x labels
+    ax.axis('tight')
 
     # Saves a png of the generated report
     file_name = save_path + reddit_user.name + '_user_activity.png'

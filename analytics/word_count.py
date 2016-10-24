@@ -46,8 +46,9 @@ def word_count(reddit_user, save_path=''):
     max_y_tick = np.amax(sorted_values) + 1
     bar_width = 1
     sorted_range = np.array(range(len(sorted_keys)))
+
     fig, ax = plt.subplots()
-    ax.bar(sorted_range + bar_width/2, sorted_values, bar_width, align='center')
+    ax.bar(sorted_range, sorted_values, bar_width, align='center')
 
     ax.set_title("Top 20 most common words by: " + reddit_user.name)
 
@@ -55,12 +56,12 @@ def word_count(reddit_user, save_path=''):
     ax.set_ylabel("Frequency", rotation='vertical')
 
     ax.set_xlim([0, len(sorted_range)])
-    ax.set_ylim([0,max_y_tick])
+    ax.set_ylim([0, max_y_tick])
 
     fig.tight_layout() # This is apparently supposed to give room to the x labels
-    # ax.axis('tight')
+    ax.axis('tight')
 
-    ax.set_xticks(sorted_range + bar_width/2)
+    ax.set_xticks(sorted_range)
     ax.set_yticks(range(max_y_tick))
 
 
