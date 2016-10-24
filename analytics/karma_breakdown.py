@@ -3,7 +3,7 @@ import numpy as np
 import operator
 from operator import itemgetter
 
-
+# TODO: Y Tick labels get squished together if a user's karma is high, implement scaling tick numbers
 def karma_breakdown(reddit_user, save_path=''):
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100

@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 
+
 def image_cloud(reddit_user, save_path=''):
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 1000

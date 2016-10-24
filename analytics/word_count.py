@@ -5,6 +5,7 @@ import numpy as np
 
 
 #TODO: Labels on the bottom are being cut off, looking for a solution
+#TODO: Y Tick labels get squished together if a word count is high, implement scaling tick numbers
 def word_count(reddit_user, save_path=''):
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100
