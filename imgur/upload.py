@@ -1,49 +1,28 @@
 #!/usr/bin/env python3
 
-'''
-	Here's how you upload an image. For this example, put the cutest picture
-	of a kitten you can find in this script's folder and name it 'Kitten.jpg'
 
-	For more details about images and the API see here:
-		https://api.imgur.com/endpoints/image
-'''
-
-# Pull authentication from the auth example (see auth.py)
-from imgur.auth import authenticate
-from imgur.imgur_settings import client_id, client_secret
-from imgurpython import ImgurClient
-
-from datetime import datetime
-
-album = None # You can also enter an album ID here
-image_path = 'Kitten.png'
-
-def upload_kitten(client):
-	'''
-		Upload a picture of a kitten. We don't ship one, so get creative!
-	'''
-
-	# Here's the metadata for the upload. All of these are optional, including
-	# this config dict itself.
-	# config = {
-	# 	'album': album,
-	# 	'name':  'Catastrophe!',
-	# 	'title': 'Catastrophe!',
-	# 	'description': 'Cute kitten being cute on {0}'.format(datetime.now())
-	# }
-
-	print("Uploading image... ")
-	image = client.upload_from_path(image_path, config=None, anon=True)
-	print("Done")
-	print()
-
-	return image
+def upload_image(imgur_client, image_path):
+    """
+    :param client: the path to the image to be uploaded. e.g.
+    :return: string URL of the uploaded image
+    """
+    print("Uploading image... ")
+    try:
+        image = imgur_client.upload_from_path(image_path, config=None, anon=True)
+    except Exception as e:
+        print('Error: ', e)
+    print("Done")
+    return format(image['link'])
 
 
-# If you want to run this as a standalone script
+# The following is for testing of imgur uploads
 if __name__ == "__main__":
-	client = ImgurClient(client_id, client_secret)
-	image = upload_kitten(client)
+    # Any python file wishing to call the upload_image function must include the following imports:
+    from imgur.imgur_settings import client_id, client_secret
+    from imgurpython import ImgurClient
 
-	print("Image was posted! Go check your images you sexy beast!")
-	print("You can find it here: {0}".format(image['link']))
+    imgur_client = ImgurClient(client_id, client_secret)
+    image_path = 'test.png'
+    image_url = upload_image(imgur_client, image_path)
+
+    print("Image posted. Here is the link: ", image_url)
