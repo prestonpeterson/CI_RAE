@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from operator import itemgetter
 from collections import Counter
 import numpy as np
+import os
 
 
 #TODO: Labels on the bottom are being cut off, looking for a solution
@@ -68,6 +69,6 @@ def word_count(reddit_user, save_path=''):
     ax.set_xticklabels(sorted_keys, rotation='vertical')
 
     #saves a png of the generated report
-    file_name = save_path + reddit_user.name + '_word_count.png'
+    file_name = os.path.join(save_path + reddit_user.name + '_word_count.png')
     plt.savefig(file_name)
     return file_name

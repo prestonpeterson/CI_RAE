@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import numpy as np
 import math
+import os
 
 
 def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
@@ -56,6 +57,6 @@ def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
     ax.axis('tight')
 
     # Saves a png of the generated report
-    file_name = save_path + reddit_user.name + '_user_activity.png'
+    file_name = os.path.join(save_path + reddit_user.name + '_user_activity.png')
     plt.savefig(file_name)
     return file_name

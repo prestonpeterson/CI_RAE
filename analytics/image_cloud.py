@@ -3,6 +3,7 @@ from os import path
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
+import os
 
 
 def image_cloud(reddit_user, save_path=''):
@@ -29,6 +30,6 @@ def image_cloud(reddit_user, save_path=''):
     plt.axis("off")
 
     # Saves a png of the generated report
-    file_name = save_path + reddit_user.name + '_image_cloud.png'
+    file_name = os.path.join(save_path + reddit_user.name + '_image_cloud.png')
     plt.savefig(file_name)
     return file_name
