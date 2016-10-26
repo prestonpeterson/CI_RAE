@@ -1,56 +1,59 @@
-import praw
 import matplotlib.pyplot as plt
 import numpy as np
 import operator
 from operator import itemgetter
 
+# TODO: Y Tick labels get squished together if a user's karma is high, implement scaling tick numbers
+def karma_breakdown(reddit_user, save_path=''):
+    # Set to grab a certain number of things from reddit...reddit wont return more than 1000
+    thing_limit = 100
 
-class CIKarmaBreakdown:
-    def __init__(self,user_name):
-        self.user_name = user_name
-    def karma_breakdown(self):
+    generated = reddit_user.get_submitted(limit=thing_limit)
 
-        # Per the reddit API, user agent should follow format: <platform>:<app ID>:<version string> (by /u/<reddit username>)
-        user_agent = ("Ubuntu 16.04:CI-RAE:V0.1 (by /u/giantmatt)")
+    karma_by_subreddit = {}
 
-        r = praw.Reddit(user_agent=user_agent)
+    for thing in generated:
+        subreddit = thing.subreddit.display_name
+        karma_by_subreddit[subreddit] = (karma_by_subreddit.get(subreddit, 0) + thing.score)
 
-        #set to grab a certain number of things from reddit...reddit wont return more than 1000
-        thing_limit = 100
-        # user_name = input("Please Enter a user to get their karma breakdown by subreddit:\n")
+    # remove entries that have a value of 0
+    removed_zeroes = {x:y for x, y in karma_by_subreddit.items() if y != 0}
 
-        user = r.get_redditor(self.user_name)
+    #sorts the dictionary by value, then reverses
+    sorted_x = sorted(removed_zeroes.items(), key=operator.itemgetter(1), reverse=True)
 
-        generated = user.get_submitted(limit=thing_limit)
+    #get just the keys into a sorted list, and trim to get the top 20
+    sorted_keys = list(map(itemgetter(0), sorted_x))
+    del sorted_keys[20:]
 
-        karma_by_subreddit = {}
+    #get just the keys into a sorted values, and trim to get the top 20
+    sorted_values = list(map(itemgetter(1), sorted_x))
+    del sorted_values[20:]
 
-        for thing in generated:
-            subreddit = thing.subreddit.display_name
-            karma_by_subreddit[subreddit] = (karma_by_subreddit.get(subreddit, 0) + thing.score)
+    max_y_tick = np.amax(sorted_values) + 1
+    bar_width = 1
+    sorted_range = np.array(range(len(sorted_keys)))
 
-        # remove entries that have a value of 0
-        removed_zeroes = {x:y for x,y in karma_by_subreddit.items() if y!=0}
+    fig, ax = plt.subplots()
+    ax.bar(sorted_range, sorted_values, bar_width, align='center')
 
-        #sorts the dictionary by value, then reverses
-        sorted_x = sorted(removed_zeroes.items(), key=operator.itemgetter(1), reverse=True)
+    ax.set_title("Karma Breakdown of top 20 subreddits from User: " + reddit_user.name)
 
-        #get just the keys into a sorted list, and trim to get the top 20
-        sorted_keys = list(map(itemgetter(0), sorted_x))
-        del sorted_keys[20:]
+    ax.set_xlabel("Subreddit Name")
+    ax.set_ylabel("Karma", rotation='vertical')
 
-        #get just the keys into a sorted values, and trim to get the top 20
-        sorted_values = list(map(itemgetter(1), sorted_x))
-        del sorted_values[20:]
+    ax.set_xlim([0, len(sorted_range)])
+    ax.set_ylim([0, max_y_tick])
 
-        fig = plt.figure()
-        plt.bar(range(len(sorted_values)), sorted_values, align='center')
-        #plt.title("Karma Breakdown of top 20 subreddits from User: " + self.user_name)
-        plt.xlabel("Subreddit Name")
-        plt.ylabel("Karma", rotation='vertical')
-        plt.xticks(range(len(sorted_keys)), sorted_keys, rotation='vertical')
-        plt.tight_layout()
+    fig.tight_layout() # This is apparently supposed to give room to the x labels
+    ax.axis('tight')
 
-        #saves a png of the generated report
-        # plt.savefig(self.user_name+'_karma_breakdown.png')
-        plt.show()
+    ax.set_xticks(sorted_range)
+    ax.set_yticks(range(max_y_tick))
+
+    ax.set_xticklabels(sorted_keys, rotation='vertical')
+
+    # Saves a png of the generated report
+    file_name = save_path + reddit_user.name + '_karma_breakdown.png'
+    plt.savefig(file_name)
+    return file_name
