@@ -25,6 +25,8 @@ class RequestThread(threading.Thread):
 
         if requests[1] == 'help':
             bot_help(self.comment)
+        elif requests[1] == 'best_worst':
+            best_worst(self.comment, requests[2])
         elif requests[1] == 'image_cloud':
             image_cloud(requests[2], '')
         elif requests[1] == 'karma_breakdown':
