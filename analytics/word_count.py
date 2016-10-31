@@ -73,4 +73,8 @@ def word_count(reddit_user, save_path=''):
     file_name = os.path.join(save_path + reddit_user.name + '_word_count.png')
     plt.savefig(file_name)
     image_link = upload.upload_image(file_name)
+
+    # Remove local copy of png
+    os.remove(file_name)
+
     return image_link

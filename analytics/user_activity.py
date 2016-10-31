@@ -61,4 +61,8 @@ def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
     file_name = os.path.join(save_path + str(reddit_user.name) + '_user_activity.png')
     plt.savefig(file_name)
     image_link = upload.upload_image(file_name)
+
+    # Remove local copy of png
+    os.remove(file_name)
+
     return image_link
