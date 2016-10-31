@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import operator
 from operator import itemgetter
+from imgur import upload
 
 # TODO: Y Tick labels get squished together if a user's karma is high, implement scaling tick numbers
 def karma_breakdown(reddit_user, save_path=''):
@@ -56,4 +57,5 @@ def karma_breakdown(reddit_user, save_path=''):
     # Saves a png of the generated report
     file_name = save_path + reddit_user.name + '_karma_breakdown.png'
     plt.savefig(file_name)
-    return file_name
+    image_link = upload.upload_image(file_name)
+    return image_link

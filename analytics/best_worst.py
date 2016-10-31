@@ -35,5 +35,5 @@ def best_worst(comment,reddit_user):
 
     answer = "\n\n***\n\n".join(comment_block)
     answer = "# BEST & WORST\n\n***\n\n" + answer
-    comment.reply(answer)
     print("'best_worst() function successfully called'") #debug purposes
+    return answer

@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
+from imgur import upload
 import os
 
 
@@ -28,4 +29,5 @@ def word_cloud(reddit_user, save_path=''):
     # Saves a png of the generated report
     file_name = os.path.join(save_path + reddit_user.name + '_word_cloud.png')
     plt.savefig(file_name)
-    return file_name
+    image_link = upload.upload_image(file_name)
+    return image_link

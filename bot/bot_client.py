@@ -4,8 +4,8 @@ import praw
 from bot.prawoauth2 import PrawOAuth2Mini
 import time
 from bot.tokens import app_key, app_secret, access_token, refresh_token
-from bot.settings import scopes, user_agent, subreddits, SLEEP_TIME, user_name, user_pass
-from analytics import request_handler
+from bot.settings import scopes, user_agent, SLEEP_TIME, user_name, user_pass
+from analytics.request_handler import RequestThread
 
 
 
@@ -83,7 +83,7 @@ class BotClient:
 
         # Check new mentions
         for m in mentions:
-            current_sub = m.subreddit
+            self.current_sub = m.subreddit
 
             if m.id in self.cache:
                 continue
@@ -102,8 +102,9 @@ class BotClient:
             if m.id not in self.cache:
                 # TODO: Call the (threaded) Request Handler class to process the user's requests
                 print("Found request")
-                m.reply(
-                    "yao yao")  # placeholder reply message. probably delete this line after adding the call to the request handler class
+                thread = RequestThread(m, self.reddit_client)
+                thread.start()
+                # m.reply("yao yao")  # placeholder reply message. probably delete this line after adding the call to the request handler class
                 m.mark_as_read()
 
             self.cache.add(m.id)

@@ -11,3 +11,4 @@ def ci_rae_help(comment):
     "**word_count**: generates a graph that shows the words you used the most in your comment history\n\n"
     "**karma_breakdown**: generates a graph that shows your karma based on which subreddits you've submitted and commented on\n\n"
     "**image_cloud**: generates a word cloud shaped as Snoo, reddit's mascot.")
+    return answer

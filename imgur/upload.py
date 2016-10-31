@@ -18,10 +18,3 @@ def upload_image(image_path):
         return "UPLOAD_ERROR"
     print("Done uploading")
     return format(image['link'])
-
-
-# The following is for testing of imgur uploads
-if __name__ == "__main__":
-    image_path = 'test.png'
-    image_url = upload_image(image_path)
-    print("Image posted. Here is the link: ", image_url)

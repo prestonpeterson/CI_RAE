@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from operator import itemgetter
 from collections import Counter
+from imgur import upload
 import numpy as np
 import os
 
@@ -71,4 +72,5 @@ def word_count(reddit_user, save_path=''):
     #saves a png of the generated report
     file_name = os.path.join(save_path + reddit_user.name + '_word_count.png')
     plt.savefig(file_name)
-    return file_name
+    image_link = upload.upload_image(file_name)
+    return image_link
