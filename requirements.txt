@@ -1,0 +1,6 @@
+praw==4.0.0b21
+pillow==3.4.2
+numpy==1.11.2
+matplotlib==1.5.3
+wordcloud==1.2.1
+imgurpython==1.1.7
