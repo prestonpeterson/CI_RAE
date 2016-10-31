@@ -100,11 +100,9 @@ class BotClient:
 
             # Process the message
             if m.id not in self.cache:
-                # TODO: Call the (threaded) Request Handler class to process the user's requests
                 print("Found request")
                 thread = RequestThread(m, self.reddit_client)
                 thread.start()
-                # m.reply("yao yao")  # placeholder reply message. probably delete this line after adding the call to the request handler class
                 m.mark_as_read()
 
             self.cache.add(m.id)
