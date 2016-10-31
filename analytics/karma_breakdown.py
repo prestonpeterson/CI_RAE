@@ -3,6 +3,7 @@ import numpy as np
 import operator
 from operator import itemgetter
 from imgur import upload
+import os
 
 
 # TODO: Y Tick labels get squished together if a user's karma is high, implement scaling tick numbers

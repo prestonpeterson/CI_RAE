@@ -4,7 +4,7 @@ import praw
 from bot.prawoauth2 import PrawOAuth2Mini
 import time
 from bot.tokens import app_key, app_secret, access_token, refresh_token
-from bot.settings import scopes, user_agent, SLEEP_TIME, user_name, user_pass
+from bot.settings import scopes, user_agent, user_name, user_pass
 from analytics.request_handler import RequestThread
 
 
@@ -107,7 +107,7 @@ class BotClient:
 
             self.cache.add(m.id)
 
-        time.sleep(SLEEP_TIME)
+        time.sleep(2)
 
 
 if __name__ == "__main__":
