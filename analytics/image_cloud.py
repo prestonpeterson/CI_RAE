@@ -15,7 +15,7 @@ def image_cloud(reddit_user, save_path=''):
     s.add("one")
 
     generated = reddit_user.get_comments(time='all', limit=None)
-    reddit_mask = np.arrayImage.open(path.join("./", "reddit.png"))
+    # reddit_mask = np.arrayImage.open(path.join("./", "reddit.png"))
 
     total_comments = str()
     for thing in generated:
@@ -23,7 +23,7 @@ def image_cloud(reddit_user, save_path=''):
         total_comments += " "
 
     # take relative word frequencies into account, lower max_font_size
-    wordcloud = WordCloud(scale=3, mask=reddit_mask, relative_scaling=.5, random_state=1, stopwords=s).generate(total_comments)
+    wordcloud = WordCloud(scale=3, relative_scaling=.5, random_state=1, stopwords=s).generate(total_comments)
     plt.figure()
     plt.title(reddit_user.name + "'s image cloud")
     plt.imshow(wordcloud)
@@ -32,8 +32,4 @@ def image_cloud(reddit_user, save_path=''):
     # Saves a png of the generated report
     file_name = os.path.join(save_path + reddit_user.name + '_image_cloud.png')
     plt.savefig(file_name)
-
-    # Remove local copy of png
-    os.remove(file_name)
-
     return file_name
