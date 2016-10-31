@@ -1,4 +1,4 @@
-praw==4.0.0b21
+praw==3.5.0
 pillow==3.4.2
 numpy==1.11.2
 matplotlib==1.5.3
