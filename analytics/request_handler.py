@@ -16,7 +16,7 @@ class RequestThread(threading.Thread):
     def run(self):
         requests = self.comment.body.lower().split(" ")
         print("requester = ", self.comment.author)
-        if len(requests) >= 1:
+        if len(requests) >= 2:
             print("command = ", requests[1])
 
         if len(requests) <= 2:
