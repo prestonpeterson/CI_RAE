@@ -13,13 +13,20 @@ class RequestThread(threading.Thread):
         threading.Thread.__init__(self)
         self.comment = comment
         self.reddit_client = reddit_client
-        print('request thread opened')
     def run(self):
         requests = self.comment.body.lower().split(" ")
-        redditor_object = self.reddit_client.get_redditor(requests[2])
         print("requester = ", self.comment.author)
-        print("command = ", requests[1])
-        if requests[1] == 'best_worst':
+        if len(requests) >= 1:
+            print("command = ", requests[1])
+
+        if len(requests) <= 2:
+            redditor_object = self.reddit_client.get_redditor(self.comment.author)
+        else:
+            redditor_object = self.reddit_client.get_redditor(requests[2])
+
+        if len(requests) <= 1:
+            reply = bot_help.ci_rae_help(self.comment)
+        elif requests[1] == 'best_worst':
             reply = best_worst.best_worst(self.comment, redditor_object)
         elif requests[1] == 'image_cloud':
             reply = image_cloud.image_cloud(redditor_object)

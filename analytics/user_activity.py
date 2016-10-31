@@ -41,7 +41,7 @@ def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
     fig, ax = plt.subplots()
     ax.bar(sorted_range, values, bar_width, align='center')
 
-    ax.set_title("Active Redditor Times: " + reddit_user.name)
+    ax.set_title("Active Redditor Times: " + str(reddit_user.name))
 
     ax.set_xlabel("Time (PST)")
     ax.set_ylabel("Percentage of comments posted", rotation='vertical')
@@ -58,7 +58,7 @@ def user_activity(reddit_user, save_path=''):  # TODO: Implement timezone
     ax.axis('tight')
 
     # Saves a png of the generated report
-    file_name = os.path.join(save_path + reddit_user.name + '_user_activity.png')
+    file_name = os.path.join(save_path + str(reddit_user.name) + '_user_activity.png')
     plt.savefig(file_name)
     image_link = upload.upload_image(file_name)
     return image_link
