@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from analytics import image_cloud
 from analytics import bot_help
 from analytics import karma_breakdown
 from analytics import user_activity
@@ -28,8 +27,6 @@ class RequestThread(threading.Thread):
                 reply = bot_help.ci_rae_help(self.comment)
             elif requests[1] == 'best_worst':
                 reply = best_worst.best_worst(self.comment, redditor_object)
-            elif requests[1] == 'image_cloud':
-                reply = image_cloud.image_cloud(redditor_object)
             elif requests[1] == 'karma_breakdown':
                 reply = karma_breakdown.karma_breakdown(redditor_object)
             elif requests[1] == 'user_activity':
