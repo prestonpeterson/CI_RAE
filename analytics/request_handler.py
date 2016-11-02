@@ -24,9 +24,9 @@ class RequestThread(threading.Thread):
             else:
                 redditor_object = self.reddit_client.get_redditor(requests[2])
             if len(requests) <= 1:
-                reply = bot_help.ci_rae_help(self.comment)
+                reply = bot_help.ci_rae_help(redditor_object)
             elif requests[1] == 'best_worst':
-                reply = best_worst.best_worst(self.comment, redditor_object)
+                reply = best_worst.best_worst(redditor_object)
             elif requests[1] == 'karma_breakdown':
                 reply = karma_breakdown.karma_breakdown(redditor_object)
             elif requests[1] == 'user_activity':

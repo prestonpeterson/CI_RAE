@@ -1,6 +1,4 @@
-import praw
-
-def best_worst(comment,reddit_user):
+def best_worst(reddit_user):
     """@param comment A reddit Comment object to reply to.
        @param reddit_user A reddit user object
     """
@@ -34,7 +32,6 @@ def best_worst(comment,reddit_user):
         comment_block.append("Your [worst submission]("+ link + ") has a score of **"+ submission_score +"**")
 
     answer = "\n\n***\n\n".join(comment_block)
-    answer = "# BEST & WORST\n\n***\n\n" + answer
     print("'best_worst() function successfully called'") #debug purposes
     return answer
 
@@ -43,4 +40,5 @@ if __name__ == '__main__':
     from bot.settings import user_agent
     client = praw.Reddit(user_agent)
     reddit_u = client.get_redditor('giantmatt')
-    #karma_breakdown(reddit_u)
+    bestworst = best_worst(reddit_u)
+    print(bestworst)
