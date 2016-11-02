@@ -37,3 +37,10 @@ def best_worst(comment,reddit_user):
     answer = "# BEST & WORST\n\n***\n\n" + answer
     print("'best_worst() function successfully called'") #debug purposes
     return answer
+
+if __name__ == '__main__':
+    import praw
+    from bot.settings import user_agent
+    client = praw.Reddit(user_agent)
+    reddit_u = client.get_redditor('giantmatt')
+    #karma_breakdown(reddit_u)

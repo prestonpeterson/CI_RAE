@@ -8,7 +8,7 @@ import os
 
 #TODO: Labels on the bottom are being cut off, looking for a solution
 #TODO: Y Tick labels get squished together if a word count is high, implement scaling tick numbers
-def word_count(reddit_user, save_path=''):
+def word_count(reddit_user, save_path='', debug=False):
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100
     # Stop Words are words which do not contain important significance to be used in Search Queries.
@@ -72,9 +72,19 @@ def word_count(reddit_user, save_path=''):
     #saves a png of the generated report
     file_name = os.path.join(save_path + reddit_user.name + '_word_count.png')
     plt.savefig(file_name)
-    image_link = upload.upload_image(file_name)
 
     # Remove local copy of png
-    os.remove(file_name)
+    if not debug:
+        image_link = upload.upload_image(file_name)
+        os.remove(file_name)
+    else:
+        image_link = ''
 
     return image_link
+
+if __name__ == '__main__':
+    import praw
+    from bot.settings import user_agent
+    client = praw.Reddit(user_agent)
+    reddit_u = client.get_redditor('giantmatt')
+    word_count(reddit_u, debug=True)

@@ -7,7 +7,7 @@ import os
 
 
 # TODO: Y Tick labels get squished together if a user's karma is high, implement scaling tick numbers
-def karma_breakdown(reddit_user, save_path=''):
+def karma_breakdown(reddit_user, save_path='', debug=False):
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100
 
@@ -59,9 +59,19 @@ def karma_breakdown(reddit_user, save_path=''):
     # Saves a png of the generated report
     file_name = save_path + reddit_user.name + '_karma_breakdown.png'
     plt.savefig(file_name)
-    image_link = upload.upload_image(file_name)
 
     # Remove local copy of png
-    os.remove(file_name)
+    if not debug:
+        image_link = upload.upload_image(file_name)
+        os.remove(file_name)
+    else:
+        image_link = ''
 
     return image_link
+
+if __name__ == '__main__':
+    import praw
+    from bot.settings import user_agent
+    client = praw.Reddit(user_agent)
+    reddit_u = client.get_redditor('giantmatt')
+    karma_breakdown(reddit_u, debug=True)
