@@ -10,6 +10,7 @@ def ci_rae_help(redditor):
     "**word_count**: Generates a graph that shows the words you used the most in your comment history\n\n"
     "**karma_breakdown**: Generates a graph that shows your karma based on which subreddits you've submitted and commented on\n\n"
     "**image_cloud**: Generates a word cloud shaped as Snoo, reddit's mascot.\n\n"
+    "**locations**: Generates a list of locations you have mentioned such as countries and states (currently, only U.S. states are listed).")
     return answer
 
 if __name__ == '__main__':
