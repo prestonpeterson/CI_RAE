@@ -3,7 +3,6 @@ def best_worst(reddit_user):
        @param reddit_user A reddit user object
     """
     comment_block = [] #list to prepare reply
-    #account = reddit_client.get_redditor(self.user_name)
 
     #get top comment
     top_comment = reddit_user.get_comments(limit=1, sort='top')
