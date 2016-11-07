@@ -63,7 +63,6 @@ def snarkiness(reddit_user):
         "wankers","wanking","whore"}
     comment_percent_threshhold = .1
 
-    user_name = reddit_user.name[:-1]
     comment_generator = reddit_user.get_comments(time='all', limit=None)
     profanity_dictionary = dict()
 
@@ -99,22 +98,23 @@ def snarkiness(reddit_user):
             count_comments_profane += 1
         count_comments += 1
 
+    user_name = reddit_user.name
     # Begin report tezt
-    result += "Here is what " + user_name + " has been saying:\n"
-    result += "/////////////////////////////////////////\n"
+    result += "Here is what " + user_name + " has been saying:\n\n"
+    result += "/////////////////////////////////////////\n\n"
 
     # Produce line for each swear word in dictionary
     # Format as follows: [WORD] AUTO_WIDTH:COUNT
     for key in profanity_dictionary:
-        result += ("{0:<" + str(longest_word + 1) + "}:{1!s}\n").format(key,profanity_dictionary[key])
+        result += ("{0:<" + str(longest_word + 1) + "}:{1!s}\n\n").format(key,profanity_dictionary[key])
 
-    result += "\nProfane words used: " + str(count_words_profane)
-    result += "\nTotal words used: " + str(count_words)
+    result += "Profane words used: " + str(count_words_profane)
+    result += "\n\nTotal words used: " + str(count_words)
 
     if float(count_comments_profane) / float(count_comments) > comment_percent_threshhold:
-        result += "\nEyyyy, \"" + user_name + "\" is snarky!"
+        result += "\n\nEyyyy, \"" + user_name + "\" is snarky!"
     else:
-        result += "\nEyyyy, \"" + user_name + "\" isn't snarky!"
+        result += "\n\nEyyyy, \"" + user_name + "\" isn't snarky!"
 
     return result
 
@@ -126,5 +126,6 @@ if __name__ == "__main__":
 
     print('Please enter the name of the user to check for snarkiness: ')
     user_name = sys.stdin.readline()
+    user_name = user_name[:-1]
 
     print(snarkiness(r.get_redditor(user_name)))
