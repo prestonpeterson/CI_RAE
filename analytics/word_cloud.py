@@ -33,10 +33,11 @@ def word_cloud(reddit_user, save_path='', debug=False):
     if not debug:
         image_link = upload.upload_image(file_name)
         os.remove(file_name)
+        return image_link
     else:
-        image_link = ''
-
-    return image_link
+        plt.show()
+        os.remove(file_name)
+        return file_name
 
 if __name__ == '__main__':
     import praw
