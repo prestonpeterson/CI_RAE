@@ -5,11 +5,8 @@ from analytics import user_activity
 from analytics import word_cloud
 from analytics import word_count
 from analytics import best_worst
-<<<<<<< HEAD
 from analytics import snarkiness
-=======
 from analytics import location_interests
->>>>>>> refs/remotes/origin/master
 import praw
 import threading
 
@@ -40,13 +37,10 @@ class RequestThread(threading.Thread):
                 reply = word_cloud.word_cloud(redditor_object)
             elif requests[1] == 'word_count':
                 reply = word_count.word_count(redditor_object)
-<<<<<<< HEAD
             elif requests[1] == 'snarkiness':
                 reply = snarkiness.snarkiness(redditor_object)
-=======
             elif requests[1] == 'locations':
                 reply = location_interests.location_interests(redditor_object)
->>>>>>> refs/remotes/origin/master
             else:
                 reply = bot_help.ci_rae_help(self.comment)
             self.comment.reply(reply)
