@@ -61,10 +61,12 @@ def snarkiness(reddit_user):
         "spic","splooge","spunk","spunking","tits",
         "twat","wank","wanked","wanker","wankered",
         "wankers","wanking","whore"}
+    comment_percent_threshhold = .1
 
     user_name = reddit_user.name[:-1]
     comment_generator = reddit_user.get_comments(time='all', limit=None)
     profanity_dictionary = dict()
+
     count_words_profane = 0
     count_words = 0
     count_comments_profane = 0
@@ -90,9 +92,6 @@ def snarkiness(reddit_user):
                     profanity_dictionary[word] = 1
                     # Update longest word length
                     longest_word = max(longest_word, len(word))
-
-                # Debug text
-                print("Profanity: " + word)
             # Update total word count
             count_words += 1
         # Update comment counts
@@ -112,7 +111,7 @@ def snarkiness(reddit_user):
     result += "\nProfane words used: " + str(count_words_profane)
     result += "\nTotal words used: " + str(count_words)
 
-    if float(count_comments_profane) / float(count_comments) > .01:
+    if float(count_comments_profane) / float(count_comments) > comment_percent_threshhold:
         result += "\nEyyyy, \"" + user_name + "\" is snarky!"
     else:
         result += "\nEyyyy, \"" + user_name + "\" isn't snarky!"
