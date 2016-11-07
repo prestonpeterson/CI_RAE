@@ -6,7 +6,6 @@ import os
 
 def word_cloud(reddit_user, save_path='', debug=False):
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
-    thing_limit = 1000
 
     # Stopwords from wordcloud
     s = set(STOPWORDS)
@@ -19,7 +18,7 @@ def word_cloud(reddit_user, save_path='', debug=False):
         total_comments += thing.body
         total_comments += " "
 
-    # take relative word frequencies into account, lower max_font_size
+    # Take relative word frequencies into account, lower max_font_size
     wordcloud = WordCloud(scale=3, relative_scaling=.5, random_state=1, stopwords=s).generate(total_comments)
     plt.figure()
     plt.title(reddit_user.name + "'s image cloud")
