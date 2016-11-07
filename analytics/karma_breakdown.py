@@ -52,9 +52,15 @@ def karma_breakdown(reddit_user, save_path='', debug=False):
     ax.axis('tight')
 
     ax.set_xticks(sorted_range)
-    ax.set_yticks(range(max_y_tick))
 
     ax.set_xticklabels(sorted_keys, rotation='vertical')
+
+    # Adds space to the bottom so that the xticklabels can be displayed
+    # f(x) = (x * 2 + 4) / 100
+    # x = the length of the biggest word | Ex. len('hello') = 5
+    longest_key = len(max(sorted_keys, key=len))
+    bottom_padding = float(longest_key * 2 + 4) / 100
+    plt.subplots_adjust(bottom=bottom_padding)
 
     # Saves a png of the generated report
     file_name = save_path + reddit_user.name + '_karma_breakdown.png'
@@ -64,10 +70,11 @@ def karma_breakdown(reddit_user, save_path='', debug=False):
     if not debug:
         image_link = upload.upload_image(file_name)
         os.remove(file_name)
+        return image_link
     else:
-        image_link = ''
-
-    return image_link
+        plt.show()
+        os.remove(file_name)
+        return file_name
 
 if __name__ == '__main__':
     import praw
