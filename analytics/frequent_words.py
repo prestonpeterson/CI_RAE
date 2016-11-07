@@ -71,6 +71,7 @@ def frequent_words(subreddit, category='hot', time='none', save_path='', submiss
         words_in_comment = filter(lambda word: word not in stop_words, map(str.lower, words_in_comment))
         # Count words in words_in_comment and generate a dictionary <string Word, int Count>
         # TODO: Implement more efficient grouping algorithm | Example: crash, crashing, and crashes should all be one word
+        # TODO: Fuzzy matching might help
         counted_comments.update(Counter(words_in_comment))
 
     # Remove entries that have a value of 0
