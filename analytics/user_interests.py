@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from imgur import upload
 from collections import OrderedDict
 from pylab import *
@@ -18,7 +17,7 @@ def interests(reddit_user, save_path='', debug=False):
 
     # Stop Words are subreddits which do not contain important significance to be used in Search Queries.
     s = ('funny', 'pics', 'videos', 'giant', 'tall', 'aww', 'fuck', 'woahdude', 'modsupport', 'wtf', 'diy',
-         'test', 'blog', 'gifs', 'promos', 'roastme', 'counting', 'askreddit')
+         'test', 'blog', 'gifs', 'promos', 'roastme', 'counting', 'askreddit', 'tifu', 'iama', 'porn')
 
     # Target Words are words which contain important significance to be used in Search Queries.
     t = ('play', 'do', 'watch', 'eat', 'want', 'love', 'need', 'into', 'thing', 'passion', 'hobby',
@@ -34,7 +33,7 @@ def interests(reddit_user, save_path='', debug=False):
         sub = thing.subreddit.display_name.lower()
         if sub in counts:
             counts[sub] += 1
-        elif sub not in s and len(sub) <= sub_name_len and '_' not in sub:
+        elif sub not in s and len(sub) <= sub_name_len and '_' not in sub and sub.isalpha():
             counts[sub] = 0
         total_comments.append(line)
 
@@ -44,7 +43,7 @@ def interests(reddit_user, save_path='', debug=False):
 
     # Make a pie graph
     if len(counts) > 0:
-        figure(1, figsize=(6,6))
+        plt.figure(1, figsize=(6,6))
         # Remove subreddits with low counts
         removed_uncommon = {x:y for x,y in counts.items() if y!=0}
 
@@ -63,13 +62,8 @@ def interests(reddit_user, save_path='', debug=False):
 
         print('Creating pie graph...')
 
-        pie(fracs, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90)
-        # The default startangle is 0, which would start
-        # the Frogs slice on the x-axis.  With startangle=90,
-        # everything is rotated counter-clockwise by 90 degrees,
-        # so the plotting starts on the positive y-axis.
-
-        title(reddit_user.name, bbox={'facecolor':'0.8', 'pad':5})
+        plt.pie(fracs, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90)
+        plt.title(reddit_user.name, bbox={'facecolor':'0.8', 'pad':5})
 
         # Saves a png of the generated report
         file_name = os.path.join(save_path + reddit_user.name + '_interests.png')
