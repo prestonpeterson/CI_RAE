@@ -1,19 +1,7 @@
 #!/usr/bin/env python
-<<<<<<< HEAD
-from analytics import bot_help
-from analytics import karma_breakdown
-from analytics import user_activity
-from analytics import word_cloud
-from analytics import word_count
-from analytics import best_worst
-from analytics import snarkiness
-from analytics import location_interests
-import praw
-=======
->>>>>>> refs/remotes/origin/master
 import threading
 from analytics import best_worst, bot_help, karma_breakdown, user_activity, \
-    word_cloud, word_count, sentiment_search, location_interests
+    word_cloud, word_count, sentiment_search, location_interests, snarkiness
 
 class RequestThread(threading.Thread):
     def __init__(self, comment, reddit_client):
