@@ -1,13 +1,7 @@
 #!/usr/bin/env python
-from analytics import bot_help
-from analytics import karma_breakdown
-from analytics import user_activity
-from analytics import word_cloud
-from analytics import word_count
-from analytics import best_worst
-from analytics import location_interests
-import praw
 import threading
+from analytics import best_worst, bot_help, karma_breakdown, user_activity, \
+    word_cloud, word_count, sentiment_search, location_interests
 
 class RequestThread(threading.Thread):
     def __init__(self, comment, reddit_client):
@@ -38,11 +32,17 @@ class RequestThread(threading.Thread):
                 reply = word_count.word_count(redditor_object)
             elif requests[1] == 'locations':
                 reply = location_interests.location_interests(redditor_object)
+            elif requests[1] == 'sentiment_search' and len(requests) >= 3:
+                term = ' '.join(requests[2:])
+                print('search term = ', term)
+                reply = sentiment_search.sentiment_search(self.reddit_client, term)
             else:
                 reply = bot_help.ci_rae_help(self.comment)
+            print(reply)
             self.comment.reply(reply)
             print('Reply sent.')
-        except:
+        except Exception as e:
+            print(e)
             print('error, marking mention as read')
             self.comment.mark_as_read()
 
