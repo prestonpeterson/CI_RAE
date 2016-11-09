@@ -1,6 +1,7 @@
 import re
 from analytics.locations import *
 
+
 """@package docstring
 Allows the user to recieve a list of locations they have recently (up to 1000 items) mentioned.
 Locations now only include countries and U.S. states which are grabbed from locations.py.

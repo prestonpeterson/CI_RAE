@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import threading
 from analytics import best_worst, bot_help, karma_breakdown, user_activity, \
-    word_cloud, word_count, sentiment_search, location_interests
+    word_cloud, word_count, sentiment_search, location_interests, snarkiness
 
 class RequestThread(threading.Thread):
     def __init__(self, comment, reddit_client):
@@ -30,6 +30,8 @@ class RequestThread(threading.Thread):
                 reply = word_cloud.word_cloud(redditor_object)
             elif requests[1] == 'word_count':
                 reply = word_count.word_count(redditor_object)
+            elif requests[1] == 'snarkiness':
+                reply = snarkiness.snarkiness(redditor_object)
             elif requests[1] == 'locations':
                 reply = location_interests.location_interests(redditor_object)
             elif requests[1] == 'sentiment_search' and len(requests) >= 3:
