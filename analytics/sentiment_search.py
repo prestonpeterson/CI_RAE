@@ -8,14 +8,17 @@ nltk.download('averaged_perceptron_tagger')
 
 # Class Splitter derived from http://fjavieralba.com/basic-sentiment-analysis-with-python.html
 class Splitter(object):
+    """
+    Uses Natural Language Toolkit to split a paragraph into a list of sentences
+    """
     def __init__(self):
         self.nltk_splitter = nltk.data.load('tokenizers/punkt/english.pickle')
         self.nltk_tokenizer = nltk.tokenize.TreebankWordTokenizer()
 
     def split(self, text):
         """
-        input format: a paragraph of text
-        output format: a list of lists of words.
+        @param text a paragraph of text
+        @return a list of lists of tokenized sentences
             e.g.: [['this', 'is', 'a', 'sentence'], ['this', 'is', 'another', 'one']]
         """
         sentences = self.nltk_splitter.tokenize(text)
@@ -23,29 +26,34 @@ class Splitter(object):
         return tokenized_sentences
 
 
-# Clas POSTagger derived from http://fjavieralba.com/basic-sentiment-analysis-with-python.html
 class POSTagger(object):
+    """
+    Class POSTagger derived from http://fjavieralba.com/basic-sentiment-analysis-with-python.html
+    Uses Natural Language Toolkit to categorize words into types (tags)
+    """
     def __init__(self):
         pass
 
     def pos_tag(self, sentences):
         """
-        input format: list of lists of words
+        @param sentences list of lists of words
             e.g.: [['this', 'is', 'a', 'sentence'], ['this', 'is', 'another', 'one']]
-        output format: list of lists of tagged tokens. Each tagged tokens has a
-        form, a lemma, and a list of tags
+        @return a list of lists of tagged tokens
+        Each tagged tokens has a form, a lemma, and a list of tags
             e.g: [[('this', 'this', ['DT']), ('is', 'be', ['VB']), ('a', 'a', ['DT']), ('sentence', 'sentence', ['NN'])],
                     [('this', 'this', ['DT']), ('is', 'be', ['VB']), ('another', 'another', ['DT']), ('one', 'one', ['CARD'])]]
         """
-
         pos = [nltk.pos_tag(sentence) for sentence in sentences]
         # adapt format
         pos = [[(word, word, [postag]) for (word, postag) in sentence] for sentence in pos]
         return pos
 
 
-# Class DictionaryTagger derived from http://fjavieralba.com/basic-sentiment-analysis-with-python.html
 class DictionaryTagger(object):
+    """
+    Class DictionaryTagger derived from http://fjavieralba.com/basic-sentiment-analysis-with-python.html
+    Uses dictionaries of word associations to tag sentences with qualitative values
+    """
     def __init__(self, dictionary_paths):
         files = [open(path, 'r') for path in dictionary_paths]
         dictionaries = [yaml.load(dict_file) for dict_file in files]
@@ -67,7 +75,7 @@ class DictionaryTagger(object):
 
     def tag_sentence(self, sentence, tag_with_lemmas=False):
         """
-        the result is only one tagging of all the possible ones.
+        @return the result is only one tagging of all the possible ones.
         The resulting tagging is determined by these two priority rules:
             - longest matches have higher priority
             - search is made from left to right
@@ -223,6 +231,9 @@ def sentiment_search(agent, search_term, debug=False):
 
 
 if __name__ == '__main__':
+    """
+    Unit tests
+    """
     from bot.settings import user_agent
     client = praw.Reddit(user_agent)
 

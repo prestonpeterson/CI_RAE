@@ -5,11 +5,22 @@ from analytics import best_worst, bot_help, karma_breakdown, user_activity, \
     word_cloud, word_count, sentiment_search, location_interests, snarkiness, user_interests
 
 class RequestThread(threading.Thread):
+    """
+    Threaded class that resolves user request parameters, calls appropriate analytic functions, and sends
+    string result to user via a comment on Reddit.
+    """
     def __init__(self, comment, reddit_client):
+        """
+        @ param comment Reddit comment object
+        @param reddit_client Reddit client object
+        """
         threading.Thread.__init__(self)
         self.comment = comment
         self.reddit_client = reddit_client
     def run(self):
+        """
+        Run the request thread
+        """
         requests = self.comment.body.lower().split(" ")
         print("requester = ", self.comment.author)
         if len(requests) >= 2:

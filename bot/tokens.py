@@ -1,4 +1,4 @@
-# bot credentials. keep it secret, keep it safe
+# bot app credentials and oauth2 tokens for Reddit. keep it secret, keep it safe
 
 app_key = '2DojNHAzx-I5gQ'
 app_secret = 'UvcLOauVTTGiKDVaidchDDatYz8'
