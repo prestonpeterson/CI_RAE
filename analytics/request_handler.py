@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+
 import threading
 from analytics import best_worst, bot_help, karma_breakdown, user_activity, \
-    word_cloud, word_count, sentiment_search, location_interests, snarkiness
+    word_cloud, word_count, sentiment_search, location_interests, snarkiness, user_interests
 
 class RequestThread(threading.Thread):
     def __init__(self, comment, reddit_client):
@@ -38,6 +39,8 @@ class RequestThread(threading.Thread):
                 term = ' '.join(requests[2:])
                 print('search term = ', term)
                 reply = sentiment_search.sentiment_search(self.reddit_client, term)
+            elif requests[1] == 'user_interests':
+                reply = user_interests.interests(redditor_object)
             else:
                 reply = bot_help.ci_rae_help(self.comment)
             print(reply)
