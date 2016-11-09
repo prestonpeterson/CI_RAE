@@ -5,6 +5,9 @@
 
 import praw
 
+# Sorted list child class of builtin list
+# Requires that list be sorted or contains will fail to provide accurate results
+
 
 class __sorted_list(list):
     def __contains__(self, item):
@@ -23,6 +26,8 @@ class __sorted_list(list):
                 else:
                     found = True
         return found
+
+# Computes snarkiness of user given use of profanity in comments
 
 
 def snarkiness(reddit_user):
@@ -65,17 +70,19 @@ def snarkiness(reddit_user):
     comment_generator = reddit_user.get_comments(time='all', limit=None)
     profanity_dictionary = dict()
 
+    user_name = reddit_user.name
     count_words_profane = 0
     count_words = 0
     count_comments_profane = 0
     count_comments = 0
     longest_word = 0
 
-    result = str()
-
+    # Iterate over all comments
     for comment in comment_generator:
+        # Split up comment into word list
         commentText = comment.body.lower().split(' ')
 
+        # Assume comment is not profane
         profane_comment = False
         for word in commentText:
             if word in profane_words:
@@ -97,8 +104,8 @@ def snarkiness(reddit_user):
             count_comments_profane += 1
         count_comments += 1
 
-    user_name = reddit_user.name
-    # Begin report tezt
+    # Begin report text
+    result = str()
     result += "Here is what " + user_name + " has been saying:\n\n"
     result += "/////////////////////////////////////////\n\n"
 
@@ -117,7 +124,7 @@ def snarkiness(reddit_user):
 
     return result
 
-
+# Testing module
 if __name__ == "__main__":
     import sys
     from bot.settings import user_agent
