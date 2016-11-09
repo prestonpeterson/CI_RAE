@@ -39,6 +39,7 @@ def interests(reddit_user, save_path='', debug=False):
         total_comments.append(line)
 
     answer = ''
+    file_name = ''
     enough_data = True
 
     # Make a pie graph
@@ -70,16 +71,15 @@ def interests(reddit_user, save_path='', debug=False):
 
         title(reddit_user.name, bbox={'facecolor':'0.8', 'pad':5})
 
+        # Saves a png of the generated report
+        file_name = os.path.join(save_path + reddit_user.name + '_interests.png')
+        plt.savefig(file_name)
+
     else:
         enough_data = False
         print('NOT ENOUGH DATA')
-        title(reddit_user.name + ' - NOT ENOUGH DATA', bbox={'facecolor':'0.8', 'pad':5})
 
-    # Saves a png of the generated report
-    file_name = os.path.join(save_path + reddit_user.name + '_interests.png')
-    plt.savefig(file_name)
-
-    # Remove local copy of png
+    # Upload image and remove local copy of png if enough data
     if not debug and enough_data:
         answer = upload.upload_image(file_name)
         os.remove(file_name)
