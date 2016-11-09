@@ -27,6 +27,8 @@ class __sorted_list(list):
                     found = True
         return found
 
+
+
 # Computes snarkiness of user given use of profanity in comments
 
 
