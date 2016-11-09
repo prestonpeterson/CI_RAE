@@ -5,6 +5,7 @@
 
 import praw
 
+
 class __sorted_list(list):
     def __contains__(self, item):
         first = 0

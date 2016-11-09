@@ -8,7 +8,6 @@ from bot.settings import scopes, user_agent, user_name, user_pass
 from analytics.request_handler import RequestThread
 
 
-
 class BotClient:
     def __init__(self):
         print("Starting up the reddit bot...")

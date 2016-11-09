@@ -1,6 +1,10 @@
 import re
+<<<<<<< HEAD
 from analytics.locations import US_States
 from analytics.locations import countries
+=======
+from analytics.locations import *
+>>>>>>> refs/remotes/origin/master
 
 """@package docstring
 Allows the user to recieve a list of locations they have recently (up to 1000 items) mentioned.
