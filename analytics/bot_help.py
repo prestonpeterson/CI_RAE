@@ -10,7 +10,8 @@ def ci_rae_help(redditor):
     "**word_count**: Generates a graph that shows the words you used the most in your comment history\n\n"
     "**karma_breakdown**: Generates a graph that shows your karma based on which subreddits you've submitted and commented on\n\n"
     "**image_cloud**: Generates a word cloud shaped as Snoo, reddit's mascot.\n\n"
-    "**locations**: Generates a list of locations you have mentioned such as countries and states (currently, only U.S. states are listed).")
+    "**locations**: Generates a list of locations you have mentioned such as countries and states (currently, only U.S. states are listed)."
+    "**user_interests: generates a graph that shows what interests the user the most\n\n")
     return answer
 
 if __name__ == '__main__':
@@ -20,3 +21,5 @@ if __name__ == '__main__':
     reddit_u = client.get_redditor('giantmatt')
     bestworst = ci_rae_help(reddit_u)
     print(bestworst)
+
+
