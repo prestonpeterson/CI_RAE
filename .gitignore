@@ -1,6 +1,8 @@
 
 # Created by https://www.gitignore.io/api/python,java,gradle,jetbrains,intellij,pycharm
 
+tokens.py
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
