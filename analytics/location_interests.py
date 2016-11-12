@@ -1,21 +1,24 @@
-import re
-from analytics.locations import *
-
-
 """@package docstring
 Allows the user to recieve a list of locations they have recently (up to 1000 items) mentioned.
 Locations now only include countries and U.S. states which are grabbed from locations.py.
 """
 
-found_locations = []
-"""@var reply A formatted string used to reply back to user.
-"""
+import re
+from analytics.locations import *
+
+found_locations = [] #used to keep track of locations already found
+
 def lookfor_locations(word):
+    """Checks to see if a location has already been looked at and checks if it exists in the lists
+       @param word: Location to check
+    """
     if word not in found_locations and (word in US_States or word in countries):
         found_locations.append(word)
 
 def location_interests(reddit_user):
-    """@param reddit_user A reddit user object
+    """Checks the user's account history for references of certain locations
+        @param reddit_user: A reddit user object to access data
+        @return: The formated reply to the user
     """
     print("Checking for locations mentioned in user post titles...")
     submissions = reddit_user.get_submitted(limit=None)

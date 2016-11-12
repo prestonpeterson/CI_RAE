@@ -1,6 +1,9 @@
+"""@package docstring
+This command looks for a user's top and worst scored comments and submissions.
+"""
 def best_worst(reddit_user):
-    """@param comment A reddit Comment object to reply to.
-       @param reddit_user A reddit user object
+    """@param reddit_user: A reddit user object to access data
+       @return: The formated reply to the user
     """
     comment_block = [] #list to prepare reply
 
