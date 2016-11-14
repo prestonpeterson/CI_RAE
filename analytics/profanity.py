@@ -2,18 +2,18 @@
 # @date:     11/3/16
 # @filename: profanity
 
-""" @package docstring 
+""" @package docstring
 Class override for built-in list
 Overrides performance of __contains__ function
 """
 
 
 class __sorted_list(list):
-    """
-    @:override __contains__ New version runs faster, and requires all contents to be sorted
-    uses binary search
-    """
     def __contains__(self, item):
+        """
+            @:override __contains__ New version runs faster, and requires all contents to be sorted
+            uses binary search
+        """
         first = 0
         last = len(self) - 1
         found = False

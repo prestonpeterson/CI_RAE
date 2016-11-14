@@ -5,17 +5,17 @@
 import praw
 from analytics.profanity import *
 
-"""
-A function to measure the profanity used in all of a user's comments, then produces
-a report formatted to be displayed on the reddit website in a comment to the
-user who requested the report
-
-@:param reddit_user instance of Redditor class from praw.objects
-@:return String value containing the formatted report
- """
-
 
 def snarkiness(reddit_user):
+    """
+    A function to measure the profanity used in all of a user's comments, then produces
+    a report formatted to be displayed on the reddit website in a comment to the
+    user who requested the report
+
+    @:param reddit_user instance of Redditor class from praw.objects
+    @:return String value containing the formatted report
+     """
+    
     # Represents percent value of comments that contain profanity for user to be labeled
     # "Snarky"
     comment_percent_threshold = .1
