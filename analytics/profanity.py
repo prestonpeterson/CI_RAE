@@ -2,7 +2,7 @@
 # @date:     11/3/16
 # @filename: profanity
 
-"""
+""" @package docstring 
 Class override for built-in list
 Overrides performance of __contains__ function
 """
