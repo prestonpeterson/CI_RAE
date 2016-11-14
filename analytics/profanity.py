@@ -11,6 +11,7 @@ Overrides performance of __contains__ function
 class __sorted_list(list):
     """
     @:override __contains__ New version runs faster, and requires all contents to be sorted
+    uses binary search
     """
     def __contains__(self, item):
         first = 0
@@ -28,6 +29,19 @@ class __sorted_list(list):
                 else:
                     found = True
         return found
+
+    def append(self, p_object):
+        raise NotImplementedError
+
+    def extend(self, iterable):
+        raise NotImplementedError
+
+    def insert(self, index, p_object):
+        super(index, p_object)
+        self.sort()
+
+    def reverse(self):
+        raise NotImplementedError
 
 
 # sorted_list of profane words
