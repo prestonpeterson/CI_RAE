@@ -11,7 +11,7 @@ Overrides performance of __contains__ function
 class __sorted_list(list):
     def __contains__(self, item):
         """
-            @:override __contains__ New version runs faster, and requires all contents to be sorted
+            @override __contains__ New version runs faster, and requires all contents to be sorted
             uses binary search
         """
         first = 0
