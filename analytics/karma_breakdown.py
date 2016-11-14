@@ -8,7 +8,12 @@ import os
 
 # TODO: Y Tick labels get squished together if a user's karma is high, implement scaling tick numbers
 def karma_breakdown(reddit_user, save_path='', debug=False):
-    # Set to grab a certain number of things from reddit...reddit wont return more than 1000
+    """Set to grab a certain number of things from reddit. Reddit wont return more than 1000
+       @param reddit_user A reddit user object to access data
+       @param save_path Used to generate link for generated image
+       @param debug Used to set debug mode
+       @return generated image link
+    """
     thing_limit = 100
 
     generated = reddit_user.get_submitted(limit=thing_limit)
