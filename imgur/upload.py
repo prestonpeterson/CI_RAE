@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""@package docstring
+This package handles image uploads to imgur
+"""
 
 from imgur.imgur_settings import client_id, client_secret
 from imgurpython import ImgurClient
