@@ -1,3 +1,7 @@
+"""@docstring docstring
+Processes a user's account and finds the most frequently used words that user has used
+"""
+
 import matplotlib.pyplot as plt
 from operator import itemgetter
 from collections import Counter
@@ -9,6 +13,11 @@ import os
 # TODO: Labels on the bottom are being cut off, looking for a solution
 # TODO: Y Tick labels get squished together if a word count is high, implement scaling tick numbers
 def word_count(reddit_user, save_path='', debug=False):
+    """@param reddit_user A reddit user object to access data
+       @param save_path Used to store the file name of the generated image
+       @param debug Determines debug mode
+       @return link to generated image
+    """
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100
     # Stop Words are words which do not contain important significance to be used in Search Queries.
