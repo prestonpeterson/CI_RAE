@@ -1,3 +1,7 @@
+"""@package docstring
+This command generates a pie graph of a user's top interests by analyzing a user's most visited subreddits.
+"""
+
 from imgur import upload
 from collections import OrderedDict
 from pylab import *
@@ -5,6 +9,12 @@ import os
 
 
 def interests(reddit_user, save_path='', debug=False):
+    """Grabs a limited number of comments made by a user and determines the top subreddits these comments were made in
+       @param reddit_user: A reddit user object to access data
+       @param save_path: Working directory
+       @param debug: Flag used for generating a local png and not uploading to Imgur
+       @return: The formatted reply to the user ("NOT ENOUGH DATA" or link to image of pie graph on Imgur)
+    """
     # Set to grab a certain number of comments from reddit...reddit wont return more than 2000
     comment_limit = 2000
     generated = reddit_user.get_comments(time='all', limit=comment_limit)
@@ -53,7 +63,6 @@ def interests(reddit_user, save_path='', debug=False):
         # Grab the top subreddits
         top = list(sorted_counts)[:num_top_subreddit]
         top_count = list(sorted_counts.values())[:num_top_subreddit]
-
         labels = top
         fracs = []
         summ = sum(top_count)
@@ -61,7 +70,6 @@ def interests(reddit_user, save_path='', debug=False):
             fracs.append(round((tc/summ)*100))
 
         print('Creating pie graph...')
-
         plt.pie(fracs, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90)
         plt.title(reddit_user.name, bbox={'facecolor':'0.8', 'pad':5})
 
