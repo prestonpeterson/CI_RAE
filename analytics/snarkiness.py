@@ -15,7 +15,7 @@ def snarkiness(reddit_user):
     @:param reddit_user instance of Redditor class from praw.objects
     @:return String value containing the formatted report
      """
-    
+
     # Represents percent value of comments that contain profanity for user to be labeled
     # "Snarky"
     comment_percent_threshold = .1

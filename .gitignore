@@ -1,6 +1,8 @@
 
 # Created by https://www.gitignore.io/api/python,java,gradle,jetbrains,intellij,pycharm
 
+tokens.py
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -289,3 +291,4 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+.idea/CI_RAE.iml

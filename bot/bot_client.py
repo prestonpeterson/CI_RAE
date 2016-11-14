@@ -9,6 +9,9 @@ from analytics.request_handler import RequestThread
 
 
 class BotClient:
+    """
+    BotClient class interacts with Reddit's servers. Handles user input.
+    """
     def __init__(self):
         print("Starting up the reddit bot...")
         print("Authenticating to Reddit...")
@@ -45,9 +48,9 @@ class BotClient:
     def check_sub_wait(self, subreddit, subs):
         """
         checks if the given subreddit is in the dictionary of subs that the bot is timed out from
-        :param subreddit: subreddit to check for existence in the dictionary
-        :param subs: the list of subs that the bot is currently timed out from
-        :return: True if the bot is currently timed out from the given subreddit. False otherwise
+        @param subreddit subreddit to check for existence in the dictionary
+        @param subs the list of subs that the bot is currently timed out from
+        @return True if the bot is currently timed out from the given subreddit. False otherwise
         """
         s = subreddit.display_name
         if s in subs:
@@ -64,9 +67,9 @@ class BotClient:
     def add_subreddit_wait_time(self, subreddit_timeout, subreddit, subs):
         """
         Add current subreddit timeout to subreddit_wait_times list.
-        :param subreddit_timeout: number of seconds til bot can post to this subreddit
-        :param subreddit: the subreddit that the bot is currently timed out from
-        :param subs: the list of subreddits that the bot is timed out from
+        @param subreddit_timeout number of seconds til bot can post to this subreddit
+        @param subreddit the subreddit that the bot is currently timed out from
+        @param subs the list of subreddits that the bot is timed out from
         """
         now = time.time()
         s = subreddit.display_name

@@ -1,10 +1,11 @@
 from wordcloud import STOPWORDS
-from collections import Counter
 from operator import itemgetter
 from imgur import upload
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import re
+import difflib
 
 # Syntax:
 # subreddit_get['hot']['none']
@@ -40,10 +41,10 @@ def frequent_words(subreddit, category='hot', time='none', save_path='', submiss
     counted_comments = {}
     # using stopwords from wordcloud to remove insignificant words ('The', 'at', etc.)
     stop_words = set(STOPWORDS)
-    # TODO: Add better STOPWORD detection (some symbols elude the filter)
-    stop_words.add('*')
+    regex_pattern = r"([a-zA-Z']+)"
     stop_words.add('i')
-    stop_words.add('>')
+    stop_words.add('*')
+    stop_words.add('-')
 
     # Get submissions from subreddit
     get = getattr(subreddit, subreddit_get[category][time])
@@ -62,20 +63,22 @@ def frequent_words(subreddit, category='hot', time='none', save_path='', submiss
         for comment in submission.comments:
             if isinstance(comment, praw.objects.Comment):
                 lines = comment.body.split()
-                for x in range(len(lines)): words_in_comment.append(lines[x])
+                for x in range(len(lines)):
+                    # Regex pattern that of words only
+                    word = re.search(regex_pattern, lines[x])
+                    if word is not None:
+                        word = str.lower(word.group(0))
+                        if word not in stop_words:
+                            match = difflib.get_close_matches(word, list(counted_comments.keys()))
+                            if not match:
+                                counted_comments[word] = 1
+                            else:
+                                counted_comments[match[0]] += 1
             else:
                 if skip_more_comments:
                     continue
                 # TODO: Implement submission.replace_more_comments, but this requires that you adhere to the Reddit API guidelines
-        # Filter out stopwords
-        words_in_comment = filter(lambda word: word not in stop_words, map(str.lower, words_in_comment))
-        # Count words in words_in_comment and generate a dictionary <string Word, int Count>
-        # TODO: Implement more efficient grouping algorithm | Example: crash, crashing, and crashes should all be one word
-        # TODO: Fuzzy matching might help
-        counted_comments.update(Counter(words_in_comment))
 
-    # Remove entries that have a value of 0
-    # removed_common = {x: y for x, y in counted_comments.items() if y != 'the'}
     # Sorts the dictionary by value, then reverses
     sorted_x = sorted(counted_comments.items(), key=itemgetter(1), reverse=True)
     top20 = sorted_x[:20]
@@ -125,7 +128,7 @@ def frequent_words(subreddit, category='hot', time='none', save_path='', submiss
         return image_link
     else:
         plt.show()
-        os.remove(file_name)
+        # os.remove(file_name)
         return file_name
 
 
@@ -134,6 +137,6 @@ if __name__ == '__main__':
     from bot.settings import user_agent
     reddit = praw.Reddit(user_agent)
     reddit.login(username='ci_rae', password='herpderp')
-    subreddit = reddit.get_subreddit('pokemongo')  # pokemongo, LUL
+    subreddit = reddit.get_subreddit('pokemongo')  # pokemongo, LUL (Try it on The_Donald if you want some epik maymays)
     # Refer to the dictionary to see which category and time choices you can make
     frequent_words(subreddit, category='top', time='today', debug=True)
