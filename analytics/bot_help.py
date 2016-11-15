@@ -14,7 +14,8 @@ def ci_rae_help(redditor):
     "**image_cloud**: Generates a word cloud shaped as Snoo, reddit's mascot.\n\n"
     "**locations**: Generates a list of locations you have mentioned such as countries and states (currently, only U.S. states are listed).\n\n"
     "**user_interests**: Generates a graph that shows what interests the user the most.\n\n"
-    "**sentiment_search**: Scans Reddit user's usage of given target product or terms, performs a linguistic analysis to determine Reddit's overall sentiment on the subject: good, bad, or otherwise.")
+    "**sentiment_search**: Scans Reddit user's usage of given target product or terms, performs a linguistic analysis to determine Reddit's overall sentiment on the subject: good, bad, or otherwise."
+    "**snarkiness**: Returns a score based on how often the user says profanity\n\n")
     return answer
 
 if __name__ == '__main__':
