@@ -1,7 +1,8 @@
-# @author:   Phillip Porter
-# @date:     11/3/16
-# @filename: snarkiness.py
+"""@package docstring
+Provides a function to generate a text report of user profanity use in comments.
+"""
 
+import operator
 import praw
 from analytics.profanity import *
 
@@ -69,16 +70,19 @@ def snarkiness(reddit_user):
 
     # Produce line for each swear word in dictionary
     # Format as follows: [WORD] AUTO_WIDTH:COUNT
-    for key in profanity_dictionary:
-        result += ("{0:<" + str(longest_word + 1) + "}:{1!s}\n\n").format(key,profanity_dictionary[key])
+    profanity_dictionary = sorted(profanity_dictionary.items(),
+                                  key=operator.itemgetter(1), reverse=True)
+
+    for pair in profanity_dictionary:
+        result += ("{0:<" + str(longest_word + 1) + "}:{1!s}\n\n").format(pair[0],pair[1])
 
     result += "Profane words used: " + str(count_words_profane)
     result += "\n\nTotal words used: " + str(count_words)
 
     if count_comments_profane / count_comments > comment_percent_threshold:
-        result += "\n\nEyyyy, \"" + user_name + "\" is snarky!"
+        result += "\n\nThe user, \"" + user_name + "\" is snarky!"
     else:
-        result += "\n\nEyyyy, \"" + user_name + "\" isn't snarky!"
+        result += "\n\nThe user, \"" + user_name + "\" is not snarky!"
 
     return result
 

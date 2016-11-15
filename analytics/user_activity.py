@@ -1,3 +1,8 @@
+"""@package docstring
+Provides a function to generate a graph of user activity on reddit, and then upload an image
+of the report to imgur.com, and finally, return a string URI to the page on imgur.com.
+"""
+
 import matplotlib.pyplot as plt
 from datetime import datetime
 import numpy as np
@@ -7,6 +12,13 @@ from imgur import upload
 
 
 def user_activity(reddit_user, save_path='', debug=False):  # TODO: Implement timezone
+    """
+    :param reddit_user: Instance of Redditor object from praw.objects
+    :param save_path:   Path to location for temporary saving of generated image
+    :param debug:       Boolean to signal debugging output
+    :return:            String containing URI link to generated image
+    """
+
     # Set to grab a certain number of things from reddit...reddit wont return more than 1000
     thing_limit = 100
     # Dictionary that contains the indexes to access information in the datetime.tuple()
