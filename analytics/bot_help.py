@@ -11,11 +11,11 @@ def ci_rae_help(redditor):
     "**word_cloud**: Generates a word cloud based on your comment history.\n\n"
     "**word_count**: Generates a graph that shows the words you used the most in your comment history.\n\n"
     "**karma_breakdown**: Generates a graph that shows your karma based on which subreddits you've submitted and commented on.\n\n"
-    "**image_cloud**: Generates a word cloud shaped as Snoo, reddit's mascot.\n\n"
     "**locations**: Generates a list of locations you have mentioned such as countries and states (currently, only U.S. states are listed).\n\n"
     "**user_interests**: Generates a graph that shows what interests the user the most.\n\n"
     "**sentiment_search**: Scans Reddit user's usage of given target product or terms, performs a linguistic analysis to determine Reddit's overall sentiment on the subject: good, bad, or otherwise."
-    "**snarkiness**: Returns a score based on how often the user says profanity\n\n")
+    "**snarkiness**: Returns a score based on how often the user says profanity\n\n"
+    "**best_worst**: Returns a user's most upvoted comment, and most downvoted comment\n\n")
     return answer
 
 if __name__ == '__main__':
