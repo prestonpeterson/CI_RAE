@@ -1,3 +1,6 @@
+"""@package docstring
+Uses OAuth to generate access tokens for bot account
+"""
 #!/usr/bin/env python
 
 # import os
