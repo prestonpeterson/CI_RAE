@@ -1,3 +1,8 @@
+"""@package docstring
+Provides a function that scans a subreddit's submissions and records frequency of word use.
+Following, a report is generated and uploaded to imgur.com.
+"""
+
 from wordcloud import STOPWORDS
 from operator import itemgetter
 from imgur import upload
@@ -33,8 +38,22 @@ subreddit_get = {
              'past_year': 'get_top_from_year'}
             }
 
-
 def frequent_words(subreddit, category='hot', time='none', save_path='', submission_limit=5, debug=False, skip_more_comments=True):
+    """
+    Collects submissions from a given subreddit, and produces word counts. These counts are
+    used to produce a graph that is uploaded to imgur.com. The URI for this image is then
+    returned as a python string to the calling function.
+
+    :param subreddit:          Instance of Subreddit object from praw.objects
+    :param category:           String identifier for category
+    :param time:               Time used for fetching
+    :param save_path:          Location to store temporary image file
+    :param submission_limit:   Limit to number of submissions used to generate report
+    :param debug:              Boolean controlling debug output
+    :param skip_more_comments: Boolean to signal skipping of additional comments
+    :return:                   String containing URI for page on imgur.com with image.
+    """
+
     # A dictionary containing all the words in the comments
     # Key (String): the word used
     # Value (int): count of how many times the word was said
