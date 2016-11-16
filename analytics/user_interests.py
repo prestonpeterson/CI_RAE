@@ -74,7 +74,7 @@ def interests(reddit_user, save_path='', debug=False):
         plt.title(reddit_user.name, bbox={'facecolor':'0.8', 'pad':5})
 
         # Saves a png of the generated report
-        file_name = os.path.join(save_path + reddit_user.name + '_interests.png')
+        file_name = os.path.join(save_path + str(reddit_user.name) + '_interests.png')
         plt.savefig(file_name)
 
     else:

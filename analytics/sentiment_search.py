@@ -201,30 +201,36 @@ def sentiment_search(agent, search_term, debug=False):
     if debug:
         print('*********\nFINAL SENTIMENT SCORE FOR KEYWORD "{}" = {}\n*********'.format(search_term, str(sentiment_score)))
         print('*********\nTOTAL SENTIMENT = {}\n**********'.format(total_sentiment))
-    sentiment_percent = int(float(sentiment_score / total_sentiment) * 100)
-    result_str = '### Sentiment Score ' + str(int(sentiment_percent)) + ': '
-    if sentiment_percent >= 65:
-        result_str += '_Overwhelmingly Positive_'
-    elif sentiment_percent >= 50:
-        result_str += '_Extremely Positive_'
-    elif sentiment_percent >= 35:
-        result_str += '_Mostly Positive_'
-    elif sentiment_percent >= 15:
-        result_str += '_Fairly Positive_'
-    elif sentiment_percent >= 5:
-        result_str += '_Slightly Positive_'
-    elif sentiment_percent <= -65:
-        result_str += '_Overwhelmingly Negative_'
-    elif sentiment_percent <= -50:
-        result_str += '_Extremely Negative_'
-    elif sentiment_percent <= -35:
-        result_str += '_Mostly Negative_'
-    elif sentiment_percent <= -15:
-        result_str += '_Fairly Negative_'
-    elif sentiment_percent <= -5:
-        result_str += '_Slightly Negative_'
+
+    if total_sentiment == 0:
+        result_str = "Insufficient data"
+        sentiment_percent = 101
     else:
-        result_str += 'Neutral**'
+        sentiment_percent = int(float(sentiment_score / total_sentiment) * 100)
+        result_str = '### Sentiment Score ' + str(int(sentiment_percent)) + ': '
+    if sentiment_percent != 101:
+        if sentiment_percent >= 65:
+            result_str += '_Overwhelmingly Positive_'
+        elif sentiment_percent >= 50:
+            result_str += '_Extremely Positive_'
+        elif sentiment_percent >= 35:
+            result_str += '_Mostly Positive_'
+        elif sentiment_percent >= 15:
+            result_str += '_Fairly Positive_'
+        elif sentiment_percent >= 5:
+            result_str += '_Slightly Positive_'
+        elif sentiment_percent <= -65:
+            result_str += '_Overwhelmingly Negative_'
+        elif sentiment_percent <= -50:
+            result_str += '_Extremely Negative_'
+        elif sentiment_percent <= -35:
+            result_str += '_Mostly Negative_'
+        elif sentiment_percent <= -15:
+            result_str += '_Fairly Negative_'
+        elif sentiment_percent <= -5:
+            result_str += '_Slightly Negative_'
+        else:
+            result_str += 'Neutral**'
     search_term = search_term.split(' ')
     result_str += '*\n***\n&nbsp;\n^(*^Based ^on ^Reddit ^users ^usage ^of ^search ^term ^`{}` ^over ^the ^past ^30 ^days)'.format('` ^`'.join(search_term))
     return result_str
