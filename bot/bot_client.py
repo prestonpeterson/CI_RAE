@@ -30,6 +30,7 @@ class BotClient:
         # infinite loop to run the listener in
         while True:
             try:
+                self.check_messages()
                 self.listen_for_mentions()
             except praw.errors.OAuthInvalidToken:
                 # access tokens expire hourly, so must be periodically refreshed
@@ -110,6 +111,23 @@ class BotClient:
             self.cache.add(m.id)
 
         time.sleep(2)
+
+    def check_messages(self):
+        """
+        Refresh reddit authentication token, checks messages for requests.
+        Checks to see if bot username is mentioned, to filter out possible spam.
+        No need to set sleep, as username mentions in comments will run the sleep.
+        """
+        self.oauth_helper.refresh()
+        messages = self.reddit_client.get_unread(limit=None)
+
+        for m in messages:
+            content = m.body
+            if content.startswith("/u/ci_rae"):
+                print("Found request")
+                thread = RequestThread(m, self.reddit_client)
+                thread.start()
+                m.mark_as_read()
 
 
 if __name__ == "__main__":
