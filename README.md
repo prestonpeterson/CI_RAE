@@ -1,7 +1,7 @@
 
 <h1 align="center">CI_RAE</h1>
 <h3 align="center">Channel Islands Reddit Analytics Bot</h3>
-<h2 align="center">Reddit Analytics Engine developed by students from CSU Channel Islands</h2>
+<h3 align="center">Reddit Analytics Engine developed by students from CSU Channel Islands</h2>
 <h3 align="center"> Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford </h3>
 <h4 align="center"> Copyright GNU Public License. </h4>
 
