@@ -1,9 +1,4 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import operator
 import praw
-import os
-from wordcloud import WordCloud, STOPWORDS
 from ipywidgets import widgets
 from IPython.html.widgets import *
 from IPython.display import display
@@ -50,7 +45,7 @@ def on_button_clicked(b):
         word_cloud.word_cloud(reddit_u, debug=True)
     elif b == word_count_b:
         word_count.word_count(reddit_u, debug=True)
-    else:
+    else:  # Should never be called, since there isn't a button for it
         bot_help.ci_rae_help(reddit_u)
 
 if __name__ == '__main__':
