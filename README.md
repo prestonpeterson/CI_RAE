@@ -31,7 +31,10 @@ A target can be a user or in the case of sentiment_search, a search term.
 * OS: Linux, OSX, or Windows
 * Python3, to install: `sudo apt-get install python3`
 * pip3 to install dependencies: `sudo apt-get install python3-pip`
+* Download the github repository and extract to a path (we used /home/<user_name>/Desktop)
+* Run the following command to add the path to Python `export PYTHONPATH="${PYTHONPATH}:/home/<user_name>/Desktop"`
 * Command to install dependencies (from CI_RAE directory): `pip3 install -r requirements.txt`
+
 
 To run the bot, run bot_client.py in the CI_RAE/bot/ directory.
 
