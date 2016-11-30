@@ -1,8 +1,11 @@
 """@package docstring
 Uses OAuth to generate access tokens for bot account
 """
+
 #!/usr/bin/env python
 
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
 # import os
 
 import praw
