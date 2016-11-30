@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
 import praw
 from bot.prawoauth2 import PrawOAuth2Mini
 import time
