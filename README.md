@@ -1,5 +1,5 @@
 <p align = "center">
-<h1>"center">CI_RAE</h1>
+<h1>CI_RAE</h1>
 <h3>Channel Islands Reddit Analytics Bot</h3>
 <h2>Reddit Analytics Engine developed by students from CSU Channel Islands</h2>
 <h3> Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford </h3>
