@@ -1,3 +1,6 @@
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 Provides a function to generate a text report of user profanity use in comments.
 """
