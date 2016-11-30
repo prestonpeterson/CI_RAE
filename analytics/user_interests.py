@@ -87,6 +87,8 @@ def interests(reddit_user, save_path='', debug=False):
         os.remove(file_name)
     elif not enough_data:
         answer = "# NOT ENOUGH DATA"
+    if debug:
+        plt.show()
 
     return answer
 
