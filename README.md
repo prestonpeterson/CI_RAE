@@ -40,6 +40,8 @@ To run the bot, run bot_client.py in the CI_RAE/bot/ directory.
 
 Bot will connect to reddit and listen for a command.  To create a command for the bot, sign up for a reddit account and post a comment anywhere with the following format: `/u/ci_rae <command> <target>`
 
+You may message the bot directly by logging in reddit and navigating to `http://www.reddit.com/u/ci_rae` and clicking on the "send a private message" link on the right hand side, and send a message with the following format: `/u/ci_rae <command> <target>`
+
 #### To Install the Dashboard:
 * First install jupyter notebook: `sudo pip3 install jupyter`
 * Then run in terminal: `jupyter notebook`
