@@ -33,3 +33,15 @@ A target can be a user or in the case of sentiment_search, a search term.
 To run the bot, run bot_client.py in the CI_RAE/bot/ directory.
 
 Bot will connect to reddit and listen for a command.  To create a command for the bot, sign up for a reddit account and post a comment anywhere with the following format:
+
+#### Dashboard:
+* First install jupyter notebook: `sudo pip3 install jupyter`
+* Then run in terminal: `jupyter notebook`
+* By default, a local server will begin running on localhoast:8888
+* Open a browser and type `localhost:8888`
+* Navigate to and run the file `Channel Islands Reddit Analytics Engine Dashboard.ipynb`
+* Make sure the script `jupyter_rae.py` is in the same directory as the .ipynb file
+* Click on the cell that says `%run jupyter_rae.py`, and hit shift+enter in order to run
+* Enter a redditor user name in the text box, then click on which analytics module you wish to run
+
+
