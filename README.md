@@ -40,7 +40,7 @@ To run the bot, run bot_client.py in the CI_RAE/bot/ directory.
 
 Bot will connect to reddit and listen for a command.  To create a command for the bot, sign up for a reddit account and post a comment anywhere with the following format: `/u/ci_rae <command> <target>`
 
-#### Dashboard:
+#### To Install the Dashboard:
 * First install jupyter notebook: `sudo pip3 install jupyter`
 * Then run in terminal: `jupyter notebook`
 * By default, a local server will begin running on localhoast:8888
