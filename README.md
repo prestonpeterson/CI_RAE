@@ -2,7 +2,8 @@
 Channel Islands Reddit Analytics Bot
 
 ## Reddit Analytics Engine developed by students from CSU Channel Islands
-
+## Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# Copyright GNU Public License.
 ### The purpose of this engine is to tap into the data goldmine that is Reddit.com. Reddit is a massive online forum and social network platform that hosts immense amounts of publicly available user data.    
 ### The Engine is also able to take user_input directly from comments posted on Reddit. Comments attempting to signal the Engine must begin with the string `/u/ci_rae`
 
@@ -45,6 +46,4 @@ Bot will connect to reddit and listen for a command.  To create a command for th
 * Enter a redditor user name in the text box, then click on which analytics module you wish to run
 
 
-# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
-# \copyright GNU Public License.
 
