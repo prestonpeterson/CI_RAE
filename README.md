@@ -4,6 +4,7 @@ Channel Islands Reddit Analytics Bot
 ## Reddit Analytics Engine developed by students from CSU Channel Islands##
 ## Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
 ## Copyright GNU Public License.
+</p>
 <p align = left>
 
 ### The purpose of this engine is to tap into the data goldmine that is Reddit.com. Reddit is a massive online forum and social network platform that hosts immense amounts of publicly available user data.    
@@ -47,5 +48,5 @@ Bot will connect to reddit and listen for a command.  To create a command for th
 * Click on the cell that says `%run jupyter_rae.py`, and hit shift+enter in order to run
 * Enter a redditor user name in the text box, then click on which analytics module you wish to run
 
-
+</p>
 
