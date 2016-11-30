@@ -1,3 +1,8 @@
+# \copyright GNU Public License.
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford  
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 Allows the user to recieve a list of locations they have recently (up to 1000 items) mentioned.
 Locations now only include countries and U.S. states which are grabbed from locations.py.
