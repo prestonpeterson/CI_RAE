@@ -1,3 +1,6 @@
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 This command generates a pie graph of a user's top interests by analyzing a user's most visited subreddits.
 """
