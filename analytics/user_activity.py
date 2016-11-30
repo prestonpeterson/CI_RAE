@@ -1,3 +1,6 @@
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 Provides a function to generate a graph of user activity on reddit, and then upload an image
 of the report to imgur.com, and finally, return a string URI to the page on imgur.com.
