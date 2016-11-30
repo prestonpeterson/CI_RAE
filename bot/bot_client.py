@@ -6,6 +6,7 @@ import time
 from bot.tokens import app_key, app_secret, access_token, refresh_token
 from bot.settings import scopes, user_agent, user_name, user_pass
 from analytics.request_handler import RequestThread
+from threading import Thread
 
 
 class BotClient:
@@ -25,11 +26,13 @@ class BotClient:
         self.cache = set() # comment ids can/should be removed from this set once they have been replied to
         self.subreddit_wait_times = {} # rate limit wait times for subreddits
         self.current_sub = ''
+        self.thread = Thread
         print("Initiating the Listening process")
 
         # infinite loop to run the listener in
         while True:
             try:
+                self.check_messages()
                 self.listen_for_mentions()
             except praw.errors.OAuthInvalidToken:
                 # access tokens expire hourly, so must be periodically refreshed
@@ -103,13 +106,30 @@ class BotClient:
             # Process the message
             if m.id not in self.cache:
                 print("Found request")
-                thread = RequestThread(m, self.reddit_client)
-                thread.start()
+                self.thread = RequestThread(m, self.reddit_client)
+                self.thread.start()
                 m.mark_as_read()
 
             self.cache.add(m.id)
 
         time.sleep(2)
+
+    def check_messages(self):
+        """
+        Refresh reddit authentication token, checks messages for requests.
+        Checks to see if bot username is mentioned, to filter out possible spam.
+        No need to set sleep, as username mentions in comments will run the sleep.
+        """
+        self.oauth_helper.refresh()
+        messages = self.reddit_client.get_unread(limit=None)
+
+        for m in messages:
+            content = m.body
+            if content.startswith("/u/ci_rae"):
+                print("Found request")
+                self.thread = RequestThread(m, self.reddit_client)
+                self.thread.start()
+                m.mark_as_read()
 
 
 if __name__ == "__main__":

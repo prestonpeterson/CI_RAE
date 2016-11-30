@@ -58,8 +58,6 @@ class RequestThread(threading.Thread):
             self.comment.reply(reply)
             print('Reply sent.')
         except Exception as e:
-            print(e)
-            print('error, marking mention as read')
-            self.comment.mark_as_read()
+            print("Exception: ", e)
 
 
