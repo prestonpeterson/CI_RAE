@@ -1,3 +1,8 @@
+# \copyright GNU Public License.
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford  
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 Provides a function that scans a subreddit's submissions and records frequency of word use.
 Following, a report is generated and uploaded to imgur.com.
