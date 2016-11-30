@@ -1,3 +1,8 @@
+# \copyright GNU Public License.
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford  
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 This command looks for a user's top and worst scored comments and submissions.
 """
