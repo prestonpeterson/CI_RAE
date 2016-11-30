@@ -46,7 +46,7 @@ def location_interests(reddit_user):
 
     reply = "## Based on your recent activity, here are some places you mentioned.\n\n***\n\n"
     for location in found_locations:
-        reply += "+ [{0}](https://www.google.com/maps/place/{0})    ".format(location)
+        reply += "+ [{0}](https://www.google.com/maps/place/{0})\n\n".format(location)
     return reply
 
 if __name__ == '__main__':
