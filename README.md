@@ -1,9 +1,9 @@
-# CI_RAE
-Channel Islands Reddit Analytics Bot
 <p align = "center">
-## Reddit Analytics Engine developed by students from CSU Channel Islands##
-## Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
-## Copyright GNU Public License.
+<h1><p align = "center">CI_RAE</p></h1>
+<h3>Channel Islands Reddit Analytics Bot</h3>
+<h2>Reddit Analytics Engine developed by students from CSU Channel Islands</h2>
+<h3> Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford </h3>
+<h4> Copyright GNU Public License. </h4>
 </p>
 
 ### The purpose of this engine is to tap into the data goldmine that is Reddit.com. Reddit is a massive online forum and social network platform that hosts immense amounts of publicly available user data.    
