@@ -38,7 +38,7 @@ A target can be a user or in the case of sentiment_search, a search term.
 
 To run the bot, run bot_client.py in the CI_RAE/bot/ directory.
 
-Bot will connect to reddit and listen for a command.  To create a command for the bot, sign up for a reddit account and post a comment anywhere with the following format:
+Bot will connect to reddit and listen for a command.  To create a command for the bot, sign up for a reddit account and post a comment anywhere with the following format: `/u/ci_rae <command> <target>`
 
 #### Dashboard:
 * First install jupyter notebook: `sudo pip3 install jupyter`
