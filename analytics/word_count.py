@@ -1,3 +1,6 @@
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@docstring docstring
 Processes a user's account and finds the most frequently used words that user has used
 """
