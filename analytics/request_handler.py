@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+# \copyright GNU Public License.
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford  
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 import threading
 from analytics import best_worst, bot_help, karma_breakdown, user_activity, \
     word_cloud, word_count, sentiment_search, location_interests, snarkiness, user_interests
