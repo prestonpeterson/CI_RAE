@@ -3,7 +3,7 @@
 <h2 align="center">Channel Islands Reddit Analytics Bot</h3>
 <h3 align="center">Reddit Analytics Engine developed by students from CSU Channel Islands</h2>
 <h4 align="center"> Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford </h3>
-<h4 align="center"> Copyright GNU Public License. </h4>
+<h4 align="center"><i>Copyright GNU Public License.</i></h4>
 
 
 #### The purpose of this engine is to tap into the data goldmine that is Reddit.com. Reddit is a massive online forum and social network platform that hosts immense amounts of publicly available user data.    
