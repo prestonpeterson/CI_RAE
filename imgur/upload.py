@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
 """@package docstring
 This package handles image uploads to imgur
 """
