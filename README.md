@@ -45,3 +45,6 @@ Bot will connect to reddit and listen for a command.  To create a command for th
 * Enter a redditor user name in the text box, then click on which analytics module you wish to run
 
 
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
+
