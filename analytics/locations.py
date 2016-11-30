@@ -1,5 +1,3 @@
-# \copyright GNU Public License.
-# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford  
 # \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
 # \copyright GNU Public License.
 
