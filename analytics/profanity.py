@@ -1,6 +1,7 @@
-# @author:   Phillip Porter
-# @date:     11/3/16
-# @filename: profanity
+# \copyright GNU Public License.
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford  
+# \author Mattias Huber, Preston Peterson, Phillip Porter, Heather Bradfield, Zoltan Batoczki, Jesus Bamford
+# \copyright GNU Public License.
 
 """ @package docstring
 Class override for built-in list
