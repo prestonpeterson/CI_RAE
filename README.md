@@ -6,8 +6,8 @@
 <h4 align="center"> Copyright GNU Public License. </h4>
 
 
-### The purpose of this engine is to tap into the data goldmine that is Reddit.com. Reddit is a massive online forum and social network platform that hosts immense amounts of publicly available user data.    
-### The Engine is also able to take user_input directly from comments posted on Reddit. Comments attempting to signal the Engine must begin with the string `/u/ci_rae`
+#### The purpose of this engine is to tap into the data goldmine that is Reddit.com. Reddit is a massive online forum and social network platform that hosts immense amounts of publicly available user data.    
+#### The Engine is also able to take user_input directly from comments posted on Reddit. Comments attempting to signal the Engine must begin with the string `/u/ci_rae`
 
 > To view the complete source code documentation, clone the repo and open CI_RAE/doxygen/html/index.html in your preferred internet browser.
 
