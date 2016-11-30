@@ -15,7 +15,8 @@ def ci_rae_help(redditor):
     "**user_interests**: Generates a graph that shows what interests the user the most.\n\n"
     "**sentiment_search**: Scans Reddit user's usage of given target product or terms, performs a linguistic analysis to determine Reddit's overall sentiment on the subject: good, bad, or otherwise.\n\n"
     "**snarkiness**: Returns a score based on how often the user says profanity.\n\n"
-    "**best_worst**: Returns a user's comment and submission with the highest score, and the comment and submission with the lowest score.")
+    "**best_worst**: Returns a user's comment and submission with the highest score, and the comment and submission with the lowest score.\n\n"
+    "You can also send a private message instead of submitting a comment. Send your message to \"ci_rae\" with a subject. Your message should follow the same format as if you were submitting it as a comment: \"/u/ci_rae <command> <target>\"")
     return answer
 
 if __name__ == '__main__':
